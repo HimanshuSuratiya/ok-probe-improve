@@ -1,0 +1,15 @@
+.viewBtn{
+    height: 45px;
+    width: 100% !important;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: rgb(224, 224, 224) !important;
+    position: relative;
+    bottom: 7px;
+    right: 18px;
+}
+
+.MainDateDiv input.MuiInputBase-input.MuiInput-input.MuiInputBase-inputAdornedEnd {
+    padding: 0px 0px 8px 0px;
+}
