@@ -9,12 +9,29 @@ import TextField from "@material-ui/core/TextField";
 import { Button, MenuItem } from "@material-ui/core";
 import "../../../../shared/Shared.css";
 import PrinterImage from "../Image/printer1.png";
+import Tooltip from '@material-ui/core/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
+import SaveIcon from '@mui/icons-material/Save';
 
 const MoreDetailInfo = () => {
   const { t } = useTranslation();
+  const [firstTableData, setFirstTableData] = useState({
+    TonerValue: 5,
+    FuserValue: 27,
+    DeveloperValue: 77,
+    OPCValue: 45,
+    TransferValue: 88,
+    OtherValue: 100,
+  })
+  const [secondTableData, setSecondTableData] = useState({
+    MinValue: 94,
+    MaxValue: 57,
+  })
   const [ModelType, setModelType] = useState(0);
   const [SupplyType, setSupplyType] = useState(0);
   const [PaperSize, setPaperSize] = useState(0);
+
   const updateModelType = (event) => {
     setModelType(event.target.value);
   };
@@ -27,14 +44,31 @@ const MoreDetailInfo = () => {
     setPaperSize(event.target.value);
   }
 
-  const [toner, setToner] = useState(0)
-  const [fuser, setFuser] = useState(0)
-  const [developer, setDeveloper] = useState(0)
-  const [opc, setOPC] = useState(0)
-  const [transfer, setTransfer] = useState(0)
-  const [other, setOther] = useState(0)
-  const [min, setMin] = useState(0)
-  const [max, setMax] = useState(0)
+  const FirstEventValue = (event) => {
+    const { name, value } = event.target;
+    setFirstTableData((prevState) => {
+      let percentageValue = parseInt(value, 10);
+      if (percentageValue > 100) percentageValue = 100;
+      if (percentageValue < 0) percentageValue = 0;
+      return {
+        ...prevState,
+        [name]: percentageValue,
+      }
+    })
+  }
+
+  const SecondEventValue = (event) => {
+    const { name, value } = event.target;
+    setSecondTableData((prevState) => {
+      let percentageValue = parseInt(value, 10);
+      if (percentageValue > 100) percentageValue = 100;
+      if (percentageValue < 0) percentageValue = 0;
+      return {
+        ...prevState,
+        [name]: percentageValue,
+      }
+    })
+  }
 
   const columnConfig = [
     {
@@ -43,7 +77,7 @@ const MoreDetailInfo = () => {
       label: t("processToner"),
       canSort: true,
       render: (Rows) => (
-        <Typography variant="body1" style={{ textAlign: "right" }}>
+        <Typography variant="body1" style={{ textAlign: "center" }}>
           {Rows.Toner}
         </Typography>
       ),
@@ -54,7 +88,7 @@ const MoreDetailInfo = () => {
       label: t("processFuser"),
       canSort: true,
       render: (Rows) => (
-        <Typography variant="body1" style={{ textAlign: "right" }}>
+        <Typography variant="body1" style={{ textAlign: "center" }}>
           {Rows.Fuser}
         </Typography>
       ),
@@ -65,7 +99,7 @@ const MoreDetailInfo = () => {
       label: t("processDeveloper"),
       canSort: true,
       render: (Rows) => (
-        <Typography variant="body1" style={{ textAlign: "right" }}>
+        <Typography variant="body1" style={{ textAlign: "center" }}>
           {Rows.Developer}
         </Typography>
       ),
@@ -77,7 +111,7 @@ const MoreDetailInfo = () => {
       canSort: true,
       render: (Rows) => (
         <>
-          <Typography variant="body1" style={{ textAlign: "right" }}>
+          <Typography variant="body1" style={{ textAlign: "center" }}>
             {Rows.OPC}
           </Typography>
         </>
@@ -90,7 +124,7 @@ const MoreDetailInfo = () => {
       canSort: true,
       render: (Rows) => (
         <>
-          <Typography variant="body1" style={{ textAlign: "right" }}>
+          <Typography variant="body1" style={{ textAlign: "center" }}>
             {Rows.Transfer}
           </Typography>
         </>
@@ -103,107 +137,107 @@ const MoreDetailInfo = () => {
       canSort: true,
       render: (Rows) => (
         <>
-          <Typography variant="body1" style={{ textAlign: "right" }}>
+          <Typography variant="body1" style={{ textAlign: "center" }}>
             {Rows.Other}
           </Typography>
         </>
       ),
+    },
+    {
+      id: "_action",
+      field: "_action",
+      label: t("Action"),
+      render: (row) => {
+        return (
+          <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+            <Tooltip title={t('Edit')} placement='top-start'>
+              <Button
+                style={{ margin: '0px 6px' }}
+                variant="contained"
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title={t('Save')} placement='top-start'>
+              <Button
+                style={{ margin: '0px 6px' }}
+                variant="contained"
+                className="Btn-Color"
+              >
+                <SaveIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title={t('Close')} placement='top-start'>
+              <Button
+                style={{ margin: '0px 6px' }}
+                variant="contained"
+                className="deleteBtn"
+              >
+                <CloseIcon />
+              </Button>
+            </Tooltip>
+          </div>
+        )
+      }
     },
   ];
 
   const Rows = [
     {
       id: 1,
-      PrinterModal: 'ALL',
       Toner: <TextField
         className="Rowfield TextRight"
-        name="noticeUsageLevel"
+        name="TonerValue"
         variant="outlined"
-        value={toner}
+        value={firstTableData.TonerValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Toner = parseInt(e.target.value, 10);
-          if (Toner > 100) Toner = 100;
-          if (Toner < 0) Toner = 0;
-          setToner(Toner);
-        }
-        }
+        onChange={FirstEventValue}
       />,
       Fuser: <TextField
-        name="noticeUsageLevel"
+        name="FuserValue"
         variant="outlined"
         className="Rowfield TextRight"
-        value={fuser}
+        value={firstTableData.FuserValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Fuser = parseInt(e.target.value, 10);
-          if (Fuser > 100) Fuser = 100;
-          if (Fuser < 0) Fuser = 0;
-          setFuser(Fuser);
-        }
-        }
+        onChange={FirstEventValue}
       />,
       Developer: <TextField
-        name="noticeUsageLevel"
+        name="DeveloperValue"
         className="Rowfield TextRight"
         variant="outlined"
-        value={developer}
+        value={firstTableData.DeveloperValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Developer = parseInt(e.target.value, 10);
-          if (Developer > 100) Developer = 100;
-          if (Developer < 0) Developer = 0;
-          setDeveloper(Developer);
-        }
-        }
+        onChange={FirstEventValue}
       />,
       OPC: <TextField
-        name="noticeUsageLevel"
+        name="OPCValue"
         variant="outlined"
         className="Rowfield TextRight"
-        value={opc}
+        value={firstTableData.OPCValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let OPC = parseInt(e.target.value, 10);
-          if (OPC > 100) OPC = 100;
-          if (OPC < 0) OPC = 0;
-          setOPC(OPC);
-        }
-        }
+        onChange={FirstEventValue}
       />,
       Transfer: <TextField
-        name="noticeUsageLevel"
+        name="TransferValue"
         className="Rowfield TextRight"
         variant="outlined"
-        value={transfer}
+        value={firstTableData.TransferValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Transfer = parseInt(e.target.value, 10);
-          if (Transfer > 100) Transfer = 100;
-          if (Transfer < 0) Transfer = 0;
-          setTransfer(Transfer);
-        }
-        }
+        onChange={FirstEventValue}
       />,
       Other: <TextField
-        name="noticeUsageLevel"
+        name="OtherValue"
         className="Rowfield TextRight"
         variant="outlined"
-        value={other}
+        value={firstTableData.OtherValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Other = parseInt(e.target.value, 10);
-          if (Other > 100) Other = 100;
-          if (Other < 0) Other = 0;
-          setOther(Other);
-        }
-        }
+        onChange={FirstEventValue}
       />,
     },
   ];
@@ -215,7 +249,7 @@ const MoreDetailInfo = () => {
       label: t("processMin"),
       canSort: true,
       render: (Rows2) => (
-        <Typography variant="body1" style={{ textAlign: "right" }}>
+        <Typography variant="body1" style={{ textAlign: "center" }}>
           {Rows2.Min}
         </Typography>
       ),
@@ -226,46 +260,70 @@ const MoreDetailInfo = () => {
       label: t("processMax"),
       canSort: true,
       render: (Rows2) => (
-        <Typography variant="body1" style={{ textAlign: "right" }}>
+        <Typography variant="body1" style={{ textAlign: "center" }}>
           {Rows2.Max}
         </Typography>
       ),
+    },
+    {
+      id: "_action",
+      field: "_action",
+      label: t("Action"),
+      render: (row) => {
+        return (
+          <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+            <Tooltip title={t('Edit')} placement='top-start'>
+              <Button
+                style={{ margin: '0px 6px' }}
+                variant="contained"
+              >
+                <EditIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title={t('Save')} placement='top-start'>
+              <Button
+                style={{ margin: '0px 6px' }}
+                variant="contained"
+                className="Btn-Color"
+              >
+                <SaveIcon />
+              </Button>
+            </Tooltip>
+            <Tooltip title={t('Close')} placement='top-start'>
+              <Button
+                style={{ margin: '0px 6px' }}
+                variant="contained"
+                className="deleteBtn"
+              >
+                <CloseIcon />
+              </Button>
+            </Tooltip>
+          </div>
+        )
+      }
     },
   ]
 
   const Rows2 = [
     {
       id: 1,
-      Client: 'ALL',
       Min: <TextField
-        name="noticeUsageLevel"
+        name="MinValue"
         variant="outlined"
         className="Rowfield TextRight"
-        value={min}
+        value={secondTableData.MinValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Min = parseInt(e.target.value, 10);
-          if (Min > 100) Min = 100;
-          if (Min < 0) Min = 0;
-          setMin(Min);
-        }
-        }
+        onChange={SecondEventValue}
       />,
       Max: <TextField
-        name="noticeUsageLevel"
+        name="MaxValue"
         className="Rowfield TextRight"
         variant="outlined"
-        value={max}
+        value={secondTableData.MaxValue}
         size="small"
         type={'number'}
-        onChange={(e) => {
-          let Max = parseInt(e.target.value, 10);
-          if (Max > 100) Max = 100;
-          if (Max < 0) Max = 0;
-          setMax(Max);
-        }
-        }
+        onChange={SecondEventValue}
       />,
     },
   ]
@@ -385,7 +443,7 @@ const MoreDetailInfo = () => {
               </td>
             </tr>
             <tr>
-              <td rowspan="2" style={{padding:'0px', border:'none'}}>
+              <td rowspan="2" style={{ padding: '0px', border: 'none' }}>
                 <p className="para">{t('')}</p>
               </td>
               <td>
@@ -408,7 +466,7 @@ const MoreDetailInfo = () => {
             </tr>
             <tr>
               <td>
-                <p className="para">{t('processReduced-Size')}</p>
+                <p className="para">{t('processImage')}</p>
               </td>
               <td style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center' }}>
                 <div style={{ width: '78%' }}>
@@ -427,7 +485,7 @@ const MoreDetailInfo = () => {
                     pixle image size is appropriate. </a>
                 </div>
                 <div style={{ height: 'auto', width: '12%' }}>
-                  <img style={{ width: '100%' }} src={PrinterImage} alt="No Image"/>
+                  <img style={{ width: '100%' }} src={PrinterImage} alt="No Image" />
                 </div>
               </td>
             </tr>
