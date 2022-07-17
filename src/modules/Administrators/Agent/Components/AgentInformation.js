@@ -23,6 +23,10 @@ const AgentInformation = () => {
     const [popUp, setPopUp] = useState(false)
     const { t } = useTranslation();
 
+    const showPopUp = () => {
+        setPopUp(true);
+    }
+
     const Rows = [
         {
             id: 1,
@@ -212,7 +216,7 @@ const AgentInformation = () => {
     return (
         <>
             <Paper elevation={4}>
-                <Grid hasSelection={true} columns={columnConfig} rows={Rows} />
+                <Grid hasSelection={true} columns={columnConfig} rows={Rows} clickEvent={showPopUp} />
             </Paper>
             {popUp ? <SMTPSettings setClosePopUp={setPopUp} /> : ''}
         </>

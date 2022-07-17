@@ -4,18 +4,22 @@ import Paper from "@material-ui/core/Paper";
 import CloseIcon from "@material-ui/icons/Close";
 import TextField from "@material-ui/core/TextField";
 import { useTranslation } from "react-i18next";
-import { Button, MenuItem } from "@material-ui/core";
-import Select from "@material-ui/core/Select";
+import { Button } from "@material-ui/core";
 import { Divider } from '@material-ui/core';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import { DialogActions, DialogContent, IconButton } from '@material-ui/core';
 import "../../../../shared/Shared.css";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const SMTPSettings = ({ setClosePopUp }) => {
     const { t } = useTranslation();
-    const [authAlgorithm, setAuthAlgorithm] = useState(0);
-    const [privacyAlgorithm, setPrivacyAlgorithm] = useState(0);
+    const [authAlgorithm, setAuthAlgorithm] = useState('');
+    const [privacyAlgorithm, setPrivacyAlgorithm] = useState('');
     const [checkedVersion3, setCheckedVersion3] = useState(false);
 
     const updateAuthAlgorithm = (event) => {
@@ -31,7 +35,7 @@ const SMTPSettings = ({ setClosePopUp }) => {
             setCheckedVersion3(true)
         }
     }
-    
+
     return (
         <>
             <Paper>
@@ -102,24 +106,28 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                         defaultValue={'epsoft'}
                                         variant="outlined"
                                     />
-                                    <Select
-                                        className="mt-4"
-                                        value={authAlgorithm}
-                                        fullWidth
-                                        onChange={updateAuthAlgorithm}
-                                        displayEmpty
-                                        variant="outlined"
-                                        disabled={checkedVersion3 ? '' : true}
-                                        style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
-                                    >
-                                        <MenuItem value={0}>{t("Auth Algorithm")}</MenuItem>
-                                        <MenuItem value={'MD5'}>MD5</MenuItem>
-                                        <MenuItem value={'SHA'}>SHA</MenuItem>
-                                        <MenuItem value={'SHA224'}>SHA224</MenuItem>
-                                        <MenuItem value={'SHA256'}>SHA256</MenuItem>
-                                        <MenuItem value={'SHA384'}>SHA384</MenuItem>
-                                        <MenuItem value={'SHA512'}>SHA512</MenuItem>
-                                    </Select>
+                                    <Box sx={{ minWidth: 120 }} className="mt-4">
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Auth Algorithm</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={authAlgorithm}
+                                                label="Auth Algorithm"
+                                                variant="outlined"
+                                                onChange={updateAuthAlgorithm}
+                                                disabled={checkedVersion3 ? '' : true}
+                                                style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
+                                            >
+                                                <MenuItem value={1}>MD5</MenuItem>
+                                                <MenuItem value={2}>SHA</MenuItem>
+                                                <MenuItem value={3}>SHA224</MenuItem>
+                                                <MenuItem value={4}>SHA256</MenuItem>
+                                                <MenuItem value={5}>SHA384</MenuItem>
+                                                <MenuItem value={6}>SHA512</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Box>
                                     <TextField
                                         className="mt-4"
                                         fullWidth
@@ -131,23 +139,27 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                         defaultValue={'HimanshuSuratiya'}
                                         variant="outlined"
                                     />
-                                    <Select
-                                        className="mt-4"
-                                        value={privacyAlgorithm}
-                                        fullWidth
-                                        onChange={updatePrivacyAlgorithm}
-                                        displayEmpty
-                                        disabled={checkedVersion3 ? '' : true}
-                                        style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
-                                        variant="outlined"
-                                    >
-                                        <MenuItem value={0}>{t("Privacy Algorithm")}</MenuItem>
-                                        <MenuItem value={'DES'}>DES</MenuItem>
-                                        <MenuItem value={'AES'}>AES</MenuItem>
-                                        <MenuItem value={'AES192'}>AES192</MenuItem>
-                                        <MenuItem value={'AES256'}>AES256</MenuItem>
-                                        <MenuItem value={'3DES'}>3DES</MenuItem>
-                                    </Select>
+                                    <Box sx={{ minWidth: 120 }} className="mt-4">
+                                        <FormControl fullWidth>
+                                            <InputLabel id="demo-simple-select-label">Privacy Algorithm</InputLabel>
+                                            <Select
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                value={privacyAlgorithm}
+                                                label="Privacy Algorithm"
+                                                variant="outlined"
+                                                onChange={updatePrivacyAlgorithm}
+                                                disabled={checkedVersion3 ? '' : true}
+                                                style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
+                                            >
+                                                <MenuItem value={0}>DES</MenuItem>
+                                                <MenuItem value={1}>AES</MenuItem>
+                                                <MenuItem value={2}>AES192</MenuItem>
+                                                <MenuItem value={3}>AES256</MenuItem>
+                                                <MenuItem value={4}>3DES</MenuItem>
+                                            </Select>
+                                        </FormControl>
+                                    </Box>
                                     <TextField
                                         className="mt-4"
                                         fullWidth
