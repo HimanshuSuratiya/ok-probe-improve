@@ -518,7 +518,54 @@ const UsagePage = ({ match }) => {
           </DialogTitle>
           <Divider />
           <DialogContent className="mt-4">
-            <TextField
+            <Autocomplete
+              freeSolo
+              disableClearable
+              value={state.newCompany}
+              classes={{
+                listbox: classes.companySearch
+              }}
+              options={[{ endCustomerName: `${state.companyName} (으)로 검색합니다.` }, ...state.companyList].map(item => item.endCustomerName)}
+              getOptionDisabled={(option) => (option || '').includes('(으)로 검색합니다.')}
+              loading={state.isCompanyFetching}
+              renderOption={(option) => (
+                <>
+                  {(option || '').includes('(으)로 검색합니다.')
+                    ? (<><div className='pb-4'>{option}</div></>)
+                    : option
+                  }
+                </>
+              )}
+              onChange={(evt, newCompany) => {
+                setState(prevState => ({
+                  ...prevState,
+                  newCompany,
+                }));
+              }}
+              renderInput={(params) => (
+                <TextField
+                  fullWidth
+                  type="text"
+                  label="Add New Company"
+                  name="newCompany"
+                  className="mb-4"
+                  variant="outlined"
+                  value={state.newCompany}
+                  {...params}
+                  margin="normal"
+                  InputProps={{
+                    ...params.InputProps,
+                    endAdornment: (
+                      <>
+                        {state.isCompanyFetching ? <CircularProgress color="inherit" size={20} /> : null}
+                        {params.InputProps.endAdornment}
+                      </>
+                    ),
+                  }}
+                />
+              )}
+            />
+            {/* <TextField
               fullWidth
               type="text"
               label="Add New Company"
@@ -533,7 +580,7 @@ const UsagePage = ({ match }) => {
                   [name]: value,
                 }));
               }}
-            />
+            /> */}
           </DialogContent>
           <Divider />
           <DialogActions>

@@ -79,9 +79,7 @@ const RegisterPrinter = () => {
             variant="outlined"
             size="small"
             label={t("Printer Information")}
-            value="Brother MFC-LS700DW services"
-            style={{backgroundColor:'#f5f6f8'}}
-            disabled={true}
+            defaultValue="Brother MFC-LS700DW services"
           />
           <Divider className="mt-6 mb-6" />
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>

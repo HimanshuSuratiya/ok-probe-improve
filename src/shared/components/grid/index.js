@@ -268,7 +268,7 @@ const Grid = ({
       </TableContainer>
       {!hidePagination && (
         <TablePagination
-          className='mt-4'
+          className='mt-4 setPagination'
           component='div'
           rowsPerPageOptions={[5, 10, 50, 100, 200, 300]}
           count={totalRows}

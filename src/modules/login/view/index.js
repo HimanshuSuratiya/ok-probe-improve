@@ -266,7 +266,7 @@ const ViewLogin = ({ history }) => {
               </Button>
             </div>
           </Paper>
-          <p style={{ marginLeft: '40px' }} className={clsx('', classes.login_info)}>Build:0.1.0 / 23 May 2022 3:02 PM</p>
+          <p style={{ marginLeft: '40px' }} className={clsx('', classes.login_info)}>Build:0.1.0 / 14 july 2022 3:50 PM</p>
         </div> :
         <div className={clsx('d-flex flex-column f-align-center f-justify-center', classes.loginWrapper)}>
           <AppContextConsumer>
@@ -360,7 +360,7 @@ const ViewLogin = ({ history }) => {
               </Button>
             </div>
           </Paper>
-          <p style={{ marginLeft: '40px' }} className={clsx('', classes.login_info)}>Build:0.1.0 / 23 May 2022 3:02 PM</p>
+          <p style={{ marginLeft: '40px' }} className={clsx('', classes.login_info)}>Build:0.1.0 / 14 july 2022 3:50 PM</p>
         </div>
       }
     </>

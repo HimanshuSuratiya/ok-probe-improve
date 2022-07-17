@@ -414,15 +414,16 @@ const MoreDetailInfo = () => {
                 <p className="para">{t('processDriver')}</p>
               </td>
               <td>
-                <TextField
-                  className="textfieldStyleAnother"
-                  name="noticeUsageLevel"
-                  variant="outlined"
-                  defaultValue={""}
-                  size="small"
-                />
-                <Button variant="contained" className="browserBtn Btn-Color"> Browser </Button>
-                <br />
+                <div style={{ display: 'flex' }}>
+                  <TextField
+                    className="textfieldStyleAnother"
+                    name="noticeUsageLevel"
+                    variant="outlined"
+                    defaultValue={""}
+                    size="small"
+                  />
+                  <Button variant="contained" className="browserBtn Btn-Color"> Browser </Button>
+                </div>
                 <a className="textClass" >-Filename can be alphanumeric characters,'-' and '-'</a>
                 <br />
                 <p className="textClass" > <input type="checkbox" /> Use Default Printer Driver</p>
@@ -434,7 +435,7 @@ const MoreDetailInfo = () => {
               </td>
               <td>
                 <TextField
-                  style={{ width: '100%', padding: '0px' }}
+                  style={{ width: '60%', padding: '0px' }}
                   name="noticeUsageLevel"
                   variant="outlined"
                   defaultValue={""}
@@ -446,33 +447,16 @@ const MoreDetailInfo = () => {
               <td rowspan="2" style={{ padding: '0px', border: 'none' }}>
                 <p className="para">{t('')}</p>
               </td>
-              <td>
-                <p className="para">{t('processFull-Size')}</p>
-              </td>
-              <td>
-                <TextField
-                  className="textfieldStyleAnother"
-                  name="noticeUsageLevel"
-                  variant="outlined"
-                  defaultValue={""}
-                  size="small"
-                />
-                <Button variant="contained" className="browserBtn Btn-Color"> Browser </Button>
-                <br />
-                <p className="textClass"> <input type="checkbox" /> Date Existing Image </p>
-                <a className="textClass">-Filename can be alphanumeric characters,'-' and '-', image size
-                  shuld be less then </a>
-              </td>
             </tr>
             <tr>
               <td>
                 <p className="para">{t('processImage')}</p>
               </td>
-              <td style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center' }}>
-                <div style={{ width: '78%' }}>
+              <td style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div style={{ width: '60%' }}>
                   <TextField
                     className="textfieldStyleAnother"
-                    style={{ width: '64%' }}
+                    style={{ width: '100%' }}
                     name="noticeUsageLevel"
                     variant="outlined"
                     defaultValue={""}
@@ -484,13 +468,16 @@ const MoreDetailInfo = () => {
                   <a className="textClass">-Filename can be alphanumeric characters,'-' and '-', 65x65
                     pixle image size is appropriate. </a>
                 </div>
-                <div style={{ height: 'auto', width: '12%' }}>
-                  <img style={{ width: '100%' }} src={PrinterImage} alt="No Image" />
+                <div style={{ width: '86px', height: '38px', marginRight: '40px' }}>
+                  <img style={{ width: '60px' }} src={PrinterImage} alt="No Image" />
                 </div>
               </td>
             </tr>
           </tbody>
         </table>
+        <div className="mt-3" style={{ height: 'auto', width: '100%', display: 'flex', justifyContent: 'right' }}>
+          <Button style={{ marginBottom: '8px' }} className="Btn-Color mb-3 mr-3" variant="contained">Save</Button>
+        </div>
       </Paper>
       <h1 className="Heading mt-5">{t('processModelConsumableThreshold')}</h1>
       <Paper className='removeBottom' elevation={4} style={{ marginTop: '20px' }}>

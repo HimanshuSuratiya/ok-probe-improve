@@ -49,3 +49,12 @@
 .setPadding div input {
     padding: 14px;
 }
+
+.setPagination div.MuiTablePagination-spacer {
+    display: none;
+}
+
+.setPagination .MuiTablePagination-actions {
+    position: absolute;
+    right: 0px;
+}
