@@ -298,7 +298,6 @@ const UsagePage = ({ match }) => {
             freeSolo
             disableClearable
             value={state.companyName}
-            disabled={true}
             classes={{
               listbox: classes.companySearch
             }}
@@ -325,7 +324,6 @@ const UsagePage = ({ match }) => {
               label={t("summarycompany name")}
               margin="normal"
               variant="outlined"
-              style={{backgroundColor:'#f5f6f8'}}
                 onChange={(evt) => {
                   const { value } = evt.currentTarget;
                   setState(prevState => ({
@@ -361,8 +359,6 @@ const UsagePage = ({ match }) => {
             value={state.equipmentLocation}
             className="mb-8"
             onChange={handleChange}
-            disabled={true}
-            style={{backgroundColor:'#f5f6f8'}}
           />
           <TextField
             fullWidth
@@ -373,8 +369,6 @@ const UsagePage = ({ match }) => {
             value={state.printerInformation}
             className="mb-8"
             onChange={handleChange}
-            disabled={true}
-            style={{backgroundColor:'#f5f6f8'}}
           />
           <TextField
             fullWidth
@@ -393,8 +387,6 @@ const UsagePage = ({ match }) => {
             variant="outlined"
             value="Admin"
             className="mb-8"
-            disabled={true}
-            style={{backgroundColor:'#f5f6f8'}}
           />
           <div className='pb-4'>
           <Typography variant='body1' className='text-bold'>{t('summaryPrinterContract')}</Typography>
@@ -404,13 +396,12 @@ const UsagePage = ({ match }) => {
               showYearDropdown
               size='small'
               label={t('summaryFrom')}
-              disabled={true}
               selected={
                 typeof state.contractStartDate === "string"
                   ? getDateObject(state.contractStartDate)
                   : state.contractStartDate
               }
-              className={`mb-8 ${classes.backgroundColor}`}
+              className={`mb-8`}
               classes={{
                 mainWrapper: 'w-50 mr-4'
               }}
@@ -426,13 +417,12 @@ const UsagePage = ({ match }) => {
               showYearDropdown
               size='small'
               label={t('summaryTo')}
-              disabled={true}
               selected={
                 typeof state.contractEndDate === "string"
                   ? getDateObject(state.contractEndDate)
                   : state.contractEndDate
               }
-              className={`mb-8 ${classes.backgroundColor}`}
+              className={`mb-8`}
               classes={{
                 mainWrapper: 'w-50 ml-4'
               }}
@@ -488,8 +478,6 @@ const UsagePage = ({ match }) => {
             value={state.contractDescription}
             className="mb-8"
             onChange={handleChange}
-            disabled={true}
-            style={{backgroundColor:'#f5f6f8'}}
           />
         </div>
         <div className="d-flex ml-8 mr-8">

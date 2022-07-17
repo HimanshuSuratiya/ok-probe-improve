@@ -152,7 +152,7 @@ const MoreDetailInfo = () => {
           <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
             <Tooltip title={t('Edit')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px' }}
+                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
               >
                 <EditIcon />
@@ -160,7 +160,7 @@ const MoreDetailInfo = () => {
             </Tooltip>
             <Tooltip title={t('Save')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px' }}
+                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
                 className="Btn-Color"
               >
@@ -169,7 +169,7 @@ const MoreDetailInfo = () => {
             </Tooltip>
             <Tooltip title={t('Close')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px' }}
+                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
                 className="deleteBtn"
               >
@@ -274,7 +274,7 @@ const MoreDetailInfo = () => {
           <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
             <Tooltip title={t('Edit')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px' }}
+                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
               >
                 <EditIcon />
@@ -282,7 +282,7 @@ const MoreDetailInfo = () => {
             </Tooltip>
             <Tooltip title={t('Save')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px' }}
+                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
                 className="Btn-Color"
               >
@@ -291,7 +291,7 @@ const MoreDetailInfo = () => {
             </Tooltip>
             <Tooltip title={t('Close')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px' }}
+                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
                 className="deleteBtn"
               >

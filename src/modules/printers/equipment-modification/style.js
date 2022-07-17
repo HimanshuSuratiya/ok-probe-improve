@@ -11,10 +11,6 @@ const useStyles =  makeStyles(theme => ({
     minWidth: 310,
     maxHeight: 250,
   },
-  backgroundColor: {
-    backgroundColor:'#f5f6f8'
-
-  },
   avtarImage: {
     width: 96,
     height: 96,

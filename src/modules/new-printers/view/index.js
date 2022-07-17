@@ -133,7 +133,7 @@ const ViewNewPrinters = ({ match, getUnassignDeviceCount = noop }) => {
             <div className="d-flex f-justify-center">
               <Tooltip title={t("newPrinterWaiting")} placement='top-start'>
                 <Button
-                style={{textAlign: "centre"}}
+                  style={{ margin: '0px 3px', padding: '0px', minWidth: '38px' }}
                   variant="contained"
                   className="mr-2"
                   color=""
@@ -152,6 +152,7 @@ const ViewNewPrinters = ({ match, getUnassignDeviceCount = noop }) => {
                 <Button
                   variant="contained"
                   className="mr-2 Btn-Color"
+                  style={{ margin: '0px 3px', padding: '0px', minWidth: '38px' }}
                   onClick={() => {
                     history.push(
                       `${match.path}/assign-printers/${row.deviceInfoId}`
@@ -165,7 +166,7 @@ const ViewNewPrinters = ({ match, getUnassignDeviceCount = noop }) => {
                 <Button
                   variant="contained"
                   className="bg-danger color-white"
-                  color="secondary"
+                  style={{ margin: '0px 3px', padding: '0px', minWidth: '38px' }}
                   onClick={() => {
                     setState((prevState) => ({
                       ...prevState,

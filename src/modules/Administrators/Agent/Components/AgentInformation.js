@@ -178,7 +178,7 @@ const AgentInformation = () => {
                     <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
                         <Tooltip title={t('Pause')} placement='top-start'>
                             <Button
-                                style={{ margin: '0px 6px' }}
+                                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                                 variant="contained"
                                 className="pauseBtn"
                             >
@@ -187,7 +187,7 @@ const AgentInformation = () => {
                         </Tooltip>
                         <Tooltip title={t('Resume')} placement='top-start'>
                             <Button
-                                style={{ margin: '0px 6px' }}
+                                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                                 variant="contained"
                                 className="Btn-Color"
                             >
@@ -196,7 +196,7 @@ const AgentInformation = () => {
                         </Tooltip>
                         <Tooltip title={t('newPrinterdelete')} placement='top-start'>
                             <Button
-                                style={{ margin: '0px 6px' }}
+                                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                                 variant="contained"
                                 className="deleteBtn"
                             >

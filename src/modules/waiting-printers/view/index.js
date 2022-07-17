@@ -151,6 +151,7 @@ const ViewNewPrinters = ({ match }) => {
                 <Button
                   variant="contained"
                   className={clsx("mr-2 Btn-Color", classes.btnprinter)}
+                  style={{ margin: '0px 3px', padding: '0px', minWidth: '38px' }}
                   onClick={() => {
                     history.push(
                       `${match.path}/assign-printers/${row.deviceInfoId}`
@@ -167,7 +168,7 @@ const ViewNewPrinters = ({ match }) => {
                     "bg-danger color-white",
                     classes.btnprinter
                   )}
-                  color="secondary"
+                  style={{ margin: '0px 3px', padding: '0px', minWidth: '38px' }}
                   onClick={() => {
                     setState((prevState) => ({
                       ...prevState,
