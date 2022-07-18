@@ -482,7 +482,7 @@ const UsagePage = ({ match }) => {
         </div>
         <div className="d-flex ml-8 mr-8">
           <Button
-            className="mb-8 mr-4"
+            className={`mb-8 mr-4 ${classes.ButtonSimilarWidth}`}
             variant="contained"
             onClick={() => {
               history.goBack();
@@ -493,7 +493,7 @@ const UsagePage = ({ match }) => {
           </Button>
           <Button
             variant="contained"
-            className="mb-8 Btn-Color"
+            className={`mb-8 Btn-Color ${classes.ButtonSimilarWidth}`}
             onClick={handleSave}
           >
             {t('summarySave')}
@@ -508,7 +508,7 @@ const UsagePage = ({ match }) => {
             paper: classes.waitingModal,
           }}
         >
-          <DialogTitle>
+          <DialogTitle style={{width:'560px'}}>
             <div className="d-flex f-align-center f-justify-between">
               <Typography variant="h5">{t('summaryAdd company')}</Typography>
               <IconButton onClick={handleModalClose}>
@@ -587,14 +587,14 @@ const UsagePage = ({ match }) => {
             <div className="d-flex">
               <Button
                 variant="outlined"
-                className="mr-4 mt-2 mb-2"
+                className={`mr-4 mt-2 mb-2 ${classes.ButtonSimilarWidth}`}
                 onClick={handleModalClose}
               >
                 {t('summaryclose')}
               </Button>
               <Button
                 variant="contained"
-                className="mr-2 mt-2 mb-2 Btn-Color"
+                className={`mr-2 mt-2 mb-2 Btn-Color ${classes.ButtonSimilarWidth}`}
                 onClick={handleSubmit}
               >
                 {t('summarySave')}

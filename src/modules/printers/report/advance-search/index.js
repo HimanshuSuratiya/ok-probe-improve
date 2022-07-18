@@ -276,6 +276,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
             <Button
               variant="contained"
               color={state.viewMode == "D" ? "primary" : ""}
+              style={{width:'8%'}}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
@@ -289,6 +290,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
             <Button
               variant="contained"
               className={state.viewMode == "M" ? "Btn-Color mr-2" : "mr-2"}
+              style={{width:'8%'}}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
@@ -301,6 +303,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
             <Button
               variant="contained"
               className={state.viewMode == "Y" ? "Btn-Color" : ""}
+              style={{width:'8%'}}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
