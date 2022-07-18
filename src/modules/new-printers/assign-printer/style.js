@@ -4,13 +4,20 @@ const useStyles = makeStyles((theme) => ({
   colorLink: {
     color: "#007bff",
   },
+
   divider: {
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
-  deleteModal: {
-    minWidth: 310,
-    maxHeight: 300,
+
+  ButtonSimilarWidth: {
+    width: '8%',
   },
+
+  deleteModal: {
+    minWidth: 600,
+    maxHeight: 250,
+  },
+
   companySearch: {
     '& li:first-child': {
       opacity: 1,

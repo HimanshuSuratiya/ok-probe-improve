@@ -154,15 +154,15 @@ const SearchResult = ({ match, getUnassignDeviceCount = noop }) => {
       </Paper>
       <div className="divBtn">
         <Button
+          className="ButtonSimilarWidth mr-4 bg-danger"
           variant="contained"
-          style={{marginRight: "20px", backgroundColor:'#f44336' ,color:'white'}}
           type="submit"
         >
           {t("processDeleteBtn")}
         </Button>
         <Button
           variant="contained"
-          className="Btn-Color"
+          className="Btn-Color ButtonSimilarWidth"
           type="submit"
           onClick={()=>{findSelectedRow()}}
         >

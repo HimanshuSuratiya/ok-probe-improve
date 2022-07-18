@@ -19,7 +19,7 @@ const ImportKeypopUp = ({ setClosePopUp, setImportKeybtn }) => {
             <Paper>
                 <div style={{ position: 'fixed', zIndex: '1300', inset: '0px' }}>
                     <div className="MuiBackdrop-root">
-                        <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%'}}>
+                        <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%' }}>
                             <div style={{ height: '560px' }} className="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded setWidth">
                                 <DialogTitle>
                                     <div className="d-flex f-align-center f-justify-between">
@@ -51,20 +51,20 @@ const ImportKeypopUp = ({ setClosePopUp, setImportKeybtn }) => {
                                 </DialogContent>
                                 <DialogActions>
                                     <div className="p-4" >
-                                        <Button variant='contained' onClick={() => { setClosePopUp(false) }} className="mr-4">
+                                        <Button variant='contained' style={{ width: '80px' }} onClick={() => { setClosePopUp(false) }} className="mr-4">
                                             {t('Close')}
                                         </Button>
                                         <Button
                                             onClick={() => { setImportKeybtn(true); setClosePopUp(false) }}
                                             variant="contained"
-                                            className='Btn-Color'
+                                            className='Btn-Color ButtonSimilarWidth'
                                             disabled={false}
                                         >
                                             {t('Import')}
                                         </Button>
                                     </div>
                                 </DialogActions>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>

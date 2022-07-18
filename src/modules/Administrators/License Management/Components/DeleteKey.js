@@ -17,14 +17,14 @@ const DeleteKey = ({ removeDeleteKeyPopUp }) => {
                                 <ErrorOutlineOutlinedIcon style={{ height: '100%', width: '100%', color: '#f44336' }} />
                             </div>
                             <div className="HeadingDiv">
-                                <h2 style={{ margin: '0px', padding: '0px', textAlign: 'center' }}>Are You Sure</h2>
+                                <h2 className="HeadParaCenter"> Are You Sure</h2>
                             </div>
 
                             <div className="paraDiv">
-                                <p style={{ margin: '0px', padding: '0px', textAlign: 'center' }}>You Will not be able to use the application anymore!</p>
+                                <p className="HeadParaCenter">You Will not be able to use the application anymore!</p>
                             </div>
-                            <div className="p-4" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                <Button variant="contained" style={{textTransform:'capitalize'}} onClick={() => { removeDeleteKeyPopUp(false) }} className="DeleteKeyBtn">{'Cancel'} </Button>
+                            <div className="p-4 d-flex f-justify-center f-align-center">
+                                <Button variant="contained" style={{ textTransform: 'capitalize' }} onClick={() => { removeDeleteKeyPopUp(false) }} className="DeleteKeyBtn">{'Cancel'} </Button>
                                 <Button style={{ textTransform: 'capitalize' }} onClick={() => { removeDeleteKeyPopUp(false) }} variant="contained" className="DeleteKeyBtn Btn-Color"> {'Ok'} </Button>
                             </div>
                         </div>

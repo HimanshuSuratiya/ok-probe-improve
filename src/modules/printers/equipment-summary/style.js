@@ -6,7 +6,11 @@ const useStyles = makeStyles((theme) => ({
     width: 80,
   },
 
-  startIcon:{
+  ButtonSimilarWidth: {
+    width: '8%',
+  },
+
+  startIcon: {
     borderRadius: '0.25rem',
     alignItems: 'center',
     display: 'flex',
@@ -16,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
     width: 70,
   },
 
-  isBookmark:{
+  isBookmark: {
     color: 'blue'
   },
 
-  whiteIcon:{
+  whiteIcon: {
     borderRadius: '0.25rem',
     alignItems: 'center',
     display: 'flex',
@@ -28,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     textAlign: 'center',
     width: 70,
-    color:'#fff'
+    color: '#fff'
   },
 
   mobTabg: {
@@ -52,21 +56,21 @@ const useStyles = makeStyles((theme) => ({
   },
 
   eventbox: {
-    borderRadius:4,
+    borderRadius: 4,
     width: 70,
     height: 66,
     backgroundColor: "#17a2b8!important",
   },
 
   memoBox: {
-    borderRadius:4,
+    borderRadius: 4,
     width: 70,
     height: 66,
     backgroundColor: "#28a745!important",
   },
 
   reportBox: {
-    borderRadius:4,
+    borderRadius: 4,
     width: 70,
     height: 66,
   },
@@ -76,22 +80,22 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 250,
   },
 
-  usagePageGrid:{
+  usagePageGrid: {
     maxHeight: 175,
     overflow: 'inherit'
   },
 
-  detailButtonRoot:{
-    backgroundColor:'rgba(0,0,0,.03)'
+  detailButtonRoot: {
+    backgroundColor: 'rgba(0,0,0,.03)'
   },
 
-  detailButtonLabel:{
-    fontWeight:'bold'
+  detailButtonLabel: {
+    fontWeight: 'bold'
   },
 
-  iconSize:{
-    fontSize:56,
-    marginTop:4
+  iconSize: {
+    fontSize: 56,
+    marginTop: 4
   },
 
   warning: {
@@ -107,15 +111,16 @@ const useStyles = makeStyles((theme) => ({
     top: '9px',
   },
 
-  tablefixed:{
+  tablefixed: {
 
     overflow: 'inherit',
   },
 
   "@media (max-width: 767px)": {
     prienter_mainarea: {
-      display: 'none!important'},
-     },
+      display: 'none!important'
+    },
+  },
 }));
 
 export default useStyles;

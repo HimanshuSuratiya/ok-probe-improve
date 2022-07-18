@@ -116,6 +116,16 @@ td button {
     text-align: right !important;
 }
 
+.iconButtons {
+    margin: 0px 6px;
+    padding: 0px;
+    min-width: 38px;
+}
+
+.disableColor {
+    background-color: #f5f6f8;
+}
+
 @media only screen and (max-width:570px) {
     .other-page-table-main .browserBtn {
         margin-top: 5px;

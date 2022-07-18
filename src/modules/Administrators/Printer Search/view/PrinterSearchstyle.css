@@ -101,15 +101,24 @@
   margin: 15px 0px 0px 0px;
 }
 
-.divBtn{
+.divBtn {
   display: flex;
   justify-content: right;
 }
 
-.searchBtn{
+.searchBtn {
   width: 100px;
 }
 
 .set-default-date div input {
   padding: 12.5px 14px;
+}
+
+.ButtonSimilarWidth {
+  width: 7%;
+  color: #fff !important;
+}
+
+.disableColor {
+  background-color: #f5f6f8;
 }

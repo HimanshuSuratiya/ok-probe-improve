@@ -21,7 +21,7 @@ const Modify = ({ setCloseModiPopUp }) => {
             <Paper>
                 <div style={{ position: 'fixed', zIndex: '1300', inset: '0px' }}>
                     <div className="MuiBackdrop-root">
-                        <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%', backgroundColor: '' }}>
+                        <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%' }}>
                             <div style={{ height: '560px' }} className="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded setWidth">
                                 <DialogTitle>
                                     <div className="d-flex f-align-center f-justify-between">
@@ -41,7 +41,7 @@ const Modify = ({ setCloseModiPopUp }) => {
                                         name="email"
                                         variant="outlined"
                                     />
-                                    <div className="mt-6" style={{ display: 'flex', justifyContent: 'space-between', background: '', height: '55px' }}>
+                                    <div className="mt-6 d-flex f-justify-between" style={{ height: '55px' }}>
                                         <TextField
                                             style={{ width: '80%' }}
                                             variant='outlined'
@@ -59,11 +59,11 @@ const Modify = ({ setCloseModiPopUp }) => {
                                 </DialogContent>
                                 <DialogActions>
                                     <div className="p-4">
-                                        <Button variant="contained" className="mr-4" onClick={() => { setCloseModiPopUp(false) }}>
+                                        <Button variant="contained" className="mr-4" style={{ width: '80px' }} onClick={() => { setCloseModiPopUp(false) }}>
                                             {t('settingsCancel')}
                                         </Button>
                                         <Button
-                                            className="Btn-Color"
+                                            className="Btn-Color ButtonSimilarWidth"
                                             variant="contained"
                                             disabled={false}
                                             onClick={() => { setCloseModiPopUp(false) }}

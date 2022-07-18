@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
   },
 
   waitingModal: {
-    minWidth: 310,
+    minWidth: 600,
     maxHeight: 250,
   },
 

@@ -83,6 +83,10 @@ ul.tabBtn li:last-child {
   color: #fff !important;
 }
 
+.ButtonSimilarWidth{
+  width: 80px;
+}
+
 @media only screen and (max-width:1150px) {
   .DepartField {
     height: 40px;

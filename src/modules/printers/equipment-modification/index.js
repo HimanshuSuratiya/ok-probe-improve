@@ -508,7 +508,7 @@ const UsagePage = ({ match }) => {
             paper: classes.waitingModal,
           }}
         >
-          <DialogTitle style={{width:'560px'}}>
+          <DialogTitle >
             <div className="d-flex f-align-center f-justify-between">
               <Typography variant="h5">{t('summaryAdd company')}</Typography>
               <IconButton onClick={handleModalClose}>

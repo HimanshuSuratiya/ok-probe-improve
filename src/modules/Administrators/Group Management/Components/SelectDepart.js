@@ -125,12 +125,12 @@ const SelectDepart = ({ setCloseSelectDepartPopUp }) => {
                                 </DialogContent>
                                 <DialogActions>
                                     <div className="p-4">
-                                        <Button style={{ backgroundColor: '#e0e0e0' }} disabled={false} className="mr-4" onClick={() => { setCloseSelectDepartPopUp(false) }}>
+                                        <Button className="mr-4" style={{ width: '80px' }} variant="contained" onClick={() => { setCloseSelectDepartPopUp(false) }}>
                                             {t('settingsCancel')}
                                         </Button>
                                         <Button
                                             variant="contained"
-                                            className="Btn-Color"
+                                            className="Btn-Color ButtonSimilarWidth"
                                             disabled={false}
                                             onClick={() => { setCloseSelectDepartPopUp(false) }}
                                         >

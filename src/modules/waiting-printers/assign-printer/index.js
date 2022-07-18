@@ -249,7 +249,7 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
         </div>
         <div className="d-flex ml-8 mr-8">
           <Button
-            className="mb-8 mr-4"
+            className={`mb-8 mr-4 ${classes.ButtonSimilarWidth}`}
             variant="contained"
             onClick={() => {
               history.goBack();
@@ -259,7 +259,7 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
           </Button>
           <Button
             variant="contained"
-            className="mb-8 Btn-Color"
+            className={`mb-8 Btn-Color ${classes.ButtonSimilarWidth}`}
             onClick={handleAssignPrinter}
           >
             {t("summarySave")}
@@ -275,7 +275,7 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
         }}
         open={state.isFormOpen}
         classes={{
-          paper: classes.deleteModal,
+          paper: classes.waitingModal,
         }}
       >
         <DialogTitle>

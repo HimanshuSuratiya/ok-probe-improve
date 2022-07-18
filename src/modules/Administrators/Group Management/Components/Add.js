@@ -36,13 +36,13 @@ const Add = ({ setClosePopUp }) => {
                                 <Divider />
                                 <DialogContent className="mt-4">
                                     <TextField
-                                        style={{ marginBottom: '10px' }}
+                                        className='mb-1'
                                         fullWidth
                                         label={t('processDepartmentName')}
                                         name="email"
                                         variant="outlined"
                                     />
-                                    <div className="mt-6" style={{ display: 'flex', justifyContent: 'space-between', background: '', height: '55px' }}>
+                                    <div className="mt-6 d-flex f-justify-between" style={{ height: '55px' }}>
                                         <TextField
                                             style={{ width: '80%' }}
                                             variant='outlined'
@@ -59,11 +59,11 @@ const Add = ({ setClosePopUp }) => {
                                 </DialogContent>
                                 <DialogActions>
                                     <div className="p-4">
-                                        <Button variant="contained" className="mr-4" onClick={() => { setClosePopUp(false) }}>
+                                        <Button variant="contained" className="mr-4" style={{ width: '80px' }} onClick={() => { setClosePopUp(false) }}>
                                             {t('settingsCancel')}
                                         </Button>
                                         <Button
-                                            className="Btn-Color"
+                                            className="Btn-Color ButtonSimilarWidth"
                                             variant="contained"
                                             disabled={false}
                                             onClick={() => { setClosePopUp(false) }}

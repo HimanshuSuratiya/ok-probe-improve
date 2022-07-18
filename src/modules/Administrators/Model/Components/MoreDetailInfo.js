@@ -149,29 +149,27 @@ const MoreDetailInfo = () => {
       label: t("Action"),
       render: (row) => {
         return (
-          <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+          <div className="d-flex" style={{ alignItems: 'center', justifyContent: 'center' }}>
             <Tooltip title={t('Edit')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
+                className="iconButtons"
               >
                 <EditIcon />
               </Button>
             </Tooltip>
             <Tooltip title={t('Save')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
-                className="Btn-Color"
+                className="Btn-Color iconButtons"
               >
                 <SaveIcon />
               </Button>
             </Tooltip>
             <Tooltip title={t('Close')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
-                className="deleteBtn"
+                className="deleteBtn iconButtons"
               >
                 <CloseIcon />
               </Button>
@@ -274,7 +272,7 @@ const MoreDetailInfo = () => {
           <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
             <Tooltip title={t('Edit')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
+                className="iconButtons"
                 variant="contained"
               >
                 <EditIcon />
@@ -282,18 +280,16 @@ const MoreDetailInfo = () => {
             </Tooltip>
             <Tooltip title={t('Save')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
-                className="Btn-Color"
+                className="Btn-Color iconButtons"
               >
                 <SaveIcon />
               </Button>
             </Tooltip>
             <Tooltip title={t('Close')} placement='top-start'>
               <Button
-                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                 variant="contained"
-                className="deleteBtn"
+                className="deleteBtn iconButtons"
               >
                 <CloseIcon />
               </Button>
@@ -342,13 +338,12 @@ const MoreDetailInfo = () => {
               </td>
               <td>
                 <TextField
-                  className="textfieldStyle"
+                  className="textfieldStyle disableColor"
                   name="noticeUsageLevel"
                   variant="outlined"
                   value="Samsung Electronics"
                   size="small"
                   disabled={true}
-                  style={{ backgroundColor: '#f5f6f8' }}
                 />
               </td>
             </tr>
@@ -359,7 +354,6 @@ const MoreDetailInfo = () => {
               <td>
                 <Select
                   value={ModelType}
-                  style={{ minWidth: '120px' }}
                   className="textfieldStyle"
                   onChange={updateModelType}
                   displayEmpty
@@ -378,7 +372,6 @@ const MoreDetailInfo = () => {
               <td>
                 <Select
                   value={PaperSize}
-                  style={{ minWidth: '120px' }}
                   className="textfieldStyle"
                   onChange={updatePaperSize}
                   displayEmpty
@@ -397,7 +390,6 @@ const MoreDetailInfo = () => {
               <td>
                 <Select
                   value={SupplyType}
-                  style={{ minWidth: '120px' }}
                   className="textfieldStyle"
                   onChange={updateSupplyType}
                   displayEmpty
@@ -414,7 +406,7 @@ const MoreDetailInfo = () => {
                 <p className="para">{t('processDriver')}</p>
               </td>
               <td>
-                <div style={{ display: 'flex' }}>
+                <div className="d-flex">
                   <TextField
                     className="textfieldStyleAnother"
                     name="noticeUsageLevel"
@@ -476,15 +468,15 @@ const MoreDetailInfo = () => {
           </tbody>
         </table>
         <div className="mt-3" style={{ height: 'auto', width: '100%', display: 'flex', justifyContent: 'right' }}>
-          <Button style={{ marginBottom: '8px' }} className="Btn-Color mb-3 mr-3" variant="contained">Save</Button>
+          <Button className="Btn-Color mb-3 mr-3" variant="contained">Save</Button>
         </div>
       </Paper>
       <h1 className="Heading mt-5">{t('processModelConsumableThreshold')}</h1>
-      <Paper className='removeBottom' elevation={4} style={{ marginTop: '20px' }}>
+      <Paper className='removeBottom mt-5' elevation={4}>
         <Grid hasSelection={false} columns={columnConfig} rows={Rows} />
       </Paper>
       <h1 className="Heading mt-5">{t('processModelUsageThreshold')}</h1>
-      <Paper elevation={4} style={{ marginTop: '20px' }}>
+      <Paper elevation={4} className='mt-5'   >
         <Grid hasSelection={false} columns={columnConfig2} rows={Rows2} />
       </Paper>
     </>

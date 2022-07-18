@@ -24,7 +24,7 @@ const Department = () => {
   const updateDepartment = (event) => {
     setDepartment(event.target.value);
   };
-  const columnConfig = [  
+  const columnConfig = [
     {
       id: "_Department",
       fieldName: "_Department",
@@ -107,12 +107,12 @@ const Department = () => {
         <div className="DepartField">
           <a className="commonTextPadding">{t('processShow')}</a>
           <Select
-            className="FirstDropDown"
+            className="FirstDropDown ml-1"
             value={Department}
             onChange={updateDepartment}
             displayEmpty
-            variant="outlined"
-            style={{ height: "40px", marginLeft: '2px', minWidth: '70px' }}
+            variant="outlined" s
+            style={{ height: "40px", minWidth: '70px' }}
           >
             <MenuItem value={0}>{t("20")}</MenuItem>
             <MenuItem value={'50'}>50</MenuItem>
@@ -122,8 +122,7 @@ const Department = () => {
           <a className="commonTextPadding">{t('processEntries')}</a>
           <a className="commonTextPadding">{t('processSearch')}</a>
           <TextField
-            style={{ marginLeft: '4px' }}
-            className="SearchTextField"
+            className="SearchTextField ml-2"
             name="noticeUsageLevel"
             variant="outlined"
             defaultValue={""}

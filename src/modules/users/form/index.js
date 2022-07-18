@@ -325,7 +325,7 @@ const Form = ({
             <Button 
               disabled={false} 
               onClick={handleClose} 
-              className="mr-4" 
+              className={`mr-4 ${classes.ButtonSimilarWidth}`} 
               variant="contained"
             >
               {t('settingsCancel')}
@@ -333,7 +333,7 @@ const Form = ({
             {!entry ? (
               <Button
                 variant="contained"
-                className='Btn-Color'
+                className={`Btn-Color ${classes.ButtonSimilarWidth}`}
                 disabled={false}
                 onClick={handleSubmit}
               >
@@ -347,7 +347,7 @@ const Form = ({
                     variant="contained"
                     disabled={false}
                     onClick={handleDelete}
-                    className="mr-4 bg-danger color-white"
+                    className={`mr-4 bg-danger color-white ${classes.ButtonSimilarWidth}`}
                   >
                     {t('summarydelete')}
                   </Button>
@@ -366,7 +366,7 @@ const Form = ({
                 {entry?.status !== "4" && (
                   <Button
                     variant="contained"
-                    className='Btn-Color'
+                    className={`Btn-Color ${classes.ButtonSimilarWidth}`}
                     disabled={false}
                     onClick={handleEdit}
                   >

@@ -8,7 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import "../../../../shared/Shared.css";
 import { Divider } from '@material-ui/core';
 import SelectedDepartment from "./SelectedDepartment";
-import {Datepicker } from "shared/components";
+import { Datepicker } from "shared/components";
 import { useHistory } from "react-router-dom";
 
 const EndDefaultDate = () => {
@@ -31,16 +31,16 @@ const PrintersDetail = () => {
       </div>
       <Paper elevation={4} className="p-4">
         <div className='wraplayout'>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="d-flex f-justify-between">
             <TextField
               name='noticeNoUse'
-              style={{ width: '80%' }}
+              className="mr-6"
               fullWidth
               variant='outlined'
               size='small'
               label={t('Department Name')}
             />
-            <Button style={{ minWidth: '90px', marginLeft: '5px' }} className="Btn-Color" variant="contained" onClick={() => { setPopUp(!popUp) }}>Select</Button>
+            <Button style={{ minWidth: '90px' }} className="Btn-Color" variant="contained" onClick={() => { setPopUp(!popUp) }}>Select</Button>
           </div>
           <TextField
             name="noticeNoUse"
@@ -51,11 +51,11 @@ const PrintersDetail = () => {
             label={t("Location")}
           />
           <Divider className="mt-6 mb-6" />
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div className="d-flex f-justify-between">
             <Datepicker
               className="set-default-date"
               label={t("Start of contract")}
-              selected={ new Date()}
+              selected={new Date()}
             />
             <Datepicker
               className="set-default-date"
@@ -72,12 +72,12 @@ const PrintersDetail = () => {
             label={t("Memo")}
           />
           <div className="d-flex f-align-center mt-6">
-            <Button 
-              variant="contained" 
-              fullWidth 
-              className="mr-10" 
+            <Button
+              variant="contained"
+              fullWidth
+              className="mr-10"
               size="large"
-              style={{height: '40.3px'}}
+              style={{ height: '40.3px' }}
               onClick={() => {
                 history.goBack();
               }}
@@ -95,7 +95,7 @@ const PrintersDetail = () => {
           </div>
         </div>
       </Paper>
-      {popUp ? <SelectedDepartment setClosePopUp={setPopUp}/> : ''}
+      {popUp ? <SelectedDepartment setClosePopUp={setPopUp} /> : ''}
     </>
   );
 };

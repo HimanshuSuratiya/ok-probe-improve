@@ -120,7 +120,7 @@ const Term = ({
         <div className="d-flex f-justify-start">
           <Button
             variant="outlined"
-            className="mr-4 mt-2 mb-2 color-white Btn-Color"
+            className={`mr-4 mt-2 mb-2 color-white Btn-Color ${classes.ButtonSimilarWidth}`}
             onClick={onClose}
           >
             {t('summaryclose')}

@@ -54,8 +54,9 @@ const License = () => {
                     <div style={{ height: 'auto', width: '100%' }}>
                         <TextField
                             name='noticeNoUse'
-                            style={{ width: '70%' , backgroundColor:'#f5f6f8'}}
+                            style={{ width: '70%' }}
                             variant='outlined'
+                            className="disableColor"
                             size='small'
                             label={t('Status')}
                             value={Data.status}
@@ -67,8 +68,8 @@ const License = () => {
                         <TextField
                             name='noticeNoUse'
                             variant='outlined'
-                            className='mt-6'
-                            style={{ width: '70%' , backgroundColor:'#f5f6f8'}}
+                            className='mt-6 disableColor'
+                            style={{ width: '70%' }}
                             size='small'
                             label={t('Application Key')}
                             value={Data.ApplicationKey}
@@ -81,10 +82,9 @@ const License = () => {
                     </div>
                     <TextField
                         name='noticeNoUse'
-                        className='mt-6'
+                        className='mt-6 disableColor'
                         fullWidth
                         variant='outlined'
-                        style={{backgroundColor:'#f5f6f8'}}
                         size='small'
                         label={t('Expire Date')}
                         value={Data.ExpireDate}
@@ -92,8 +92,7 @@ const License = () => {
                     />
                     <TextField
                         name="noticeNoUse"
-                        style={{backgroundColor:'#f5f6f8'}}
-                        className='mt-6'
+                        className='mt-6 disableColor'
                         fullWidth
                         variant="outlined"
                         size="small"
@@ -103,9 +102,8 @@ const License = () => {
                     />
                     <TextField
                         name="noticeNoUse"
-                        className='mt-6'
+                        className='mt-6 disableColor'
                         fullWidth
-                        style={{backgroundColor:'#f5f6f8'}}
                         variant="outlined"
                         size="small"
                         value={Data.Email}
@@ -114,9 +112,8 @@ const License = () => {
                     />
                     <TextField
                         name="noticeNoUse"
-                        className='mt-6'
+                        className='mt-6 disableColor'
                         fullWidth
-                        style={{backgroundColor:'#f5f6f8'}}
                         variant="outlined"
                         size="small"
                         value={Data.Contact}
@@ -129,9 +126,8 @@ const License = () => {
                     <h5 style={{ fontSize: '15px', margin: '8px 0px' }}>{t("Functions / Options Subjects")}</h5>
                     <TextField
                         name="noticeNoUse"
-                        className='mt-4'
+                        className='mt-4 disableColor'
                         fullWidth
-                        style={{backgroundColor:'#f5f6f8'}}
                         variant="outlined"
                         size="small"
                         value={Data.NoofDevices}

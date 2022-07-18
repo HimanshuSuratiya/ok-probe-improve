@@ -197,7 +197,7 @@ const ViewCustomers = ({ match }) => {
       </Paper>
       <div className="d-flex f-justify-end mt-4">
         <Button
-          className='bg-danger color-white'
+          className={`bg-danger color-white ${classes.ButtonSimilarWidth}`}
           onClick={() => {
             setState((prevState) => ({
               ...prevState,
@@ -209,7 +209,7 @@ const ViewCustomers = ({ match }) => {
         </Button>
         <Button
           variant="contained"
-          className="ml-4 Btn-Color"
+          className={`ml-4 Btn-Color ${classes.ButtonSimilarWidth}`}
           onClick={() => {
             handleSave();
           }}

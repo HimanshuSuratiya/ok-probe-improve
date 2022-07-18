@@ -360,14 +360,14 @@ const ViewNewPrinters = ({ match, getUnassignDeviceCount = noop }) => {
           <div className="d-flex">
             <Button
               variant="outlined"
-              className="mr-4 mt-2 mb-2"
+              className={`mr-4 mt-2 mb-2 ${classes.ButtonSimilarWidth}`}
               onClick={handleModalClose}
             >
               {t("newPrinterclose")}
             </Button>
             <Button
               variant="contained"
-              className="mr-2 mt-2 mb-2 Btn-Color"
+              className={`mr-2 mt-2 mb-2 Btn-Color ${classes.ButtonSimilarWidth}`}
               onClick={handleWaitingConfirm}
             >
               {t("newPrinterStandby")}
@@ -417,7 +417,7 @@ const ViewNewPrinters = ({ match, getUnassignDeviceCount = noop }) => {
           <div className="d-flex">
             <Button
               variant="outlined"
-              className="mr-4 mt-2 mb-2"
+              className={`mr-4 mt-2 mb-2 ${classes.ButtonSimilarWidth}`}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
@@ -430,7 +430,7 @@ const ViewNewPrinters = ({ match, getUnassignDeviceCount = noop }) => {
             </Button>
             <Button
               variant="outlined"
-              className="mr-2 mt-2 mb-2 bg-danger color-white"
+              className={`mr-2 mt-2 mb-2 bg-danger color-white ${classes.ButtonSimilarWidth}`}
               onClick={handleDeleteConfirmation}
             >
               {t("newPrinterdelete")}

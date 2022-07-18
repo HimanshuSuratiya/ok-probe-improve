@@ -125,7 +125,7 @@ const ViewSettings = ({ history }) => {
           <TextField
             name='noticeNoEmail'
             fullWidth
-            style={{backgroundColor:'#f5f6f8'}}
+            className={`${classes.disableColor}`}
             variant='outlined'
             size='small'
             label={t('settingsWarningDuration')}
@@ -135,8 +135,7 @@ const ViewSettings = ({ history }) => {
           />
           <TextField
             name='noticeUsageLevel'
-            style={{backgroundColor:'#f5f6f8'}}
-            className='mt-6'
+            className={`mt-6 ${classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
@@ -147,9 +146,8 @@ const ViewSettings = ({ history }) => {
           />
           <TextField
             name='noticeNoUse'
-            className='mt-6'
+            className={`mt-6 ${classes.disableColor}`}
             fullWidth
-            style={{backgroundColor:'#f5f6f8'}}
             variant='outlined'
             size='small'
             label={t('settingsNoUsage')}
@@ -159,8 +157,7 @@ const ViewSettings = ({ history }) => {
           />
           <TextField
             name='deviceDeletePeriod'
-            className='mt-6'
-            style={{backgroundColor:'#f5f6f8'}}
+            className={`mt-6 ${classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
@@ -171,8 +168,7 @@ const ViewSettings = ({ history }) => {
           />
           <TextField
             name='defaultEmail'
-            className='mt-6'
-            style={{backgroundColor:'#f5f6f8'}}
+            className={`mt-6 ${classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
@@ -185,8 +181,7 @@ const ViewSettings = ({ history }) => {
           />
           <TextField
             name='additionalEmail'
-            className='mt-6'
-            style={{backgroundColor:'#f5f6f8'}}
+            className={`mt-6 ${classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
@@ -199,8 +194,7 @@ const ViewSettings = ({ history }) => {
           />
           <TextField
             name='partnerName'
-            className='mt-6'
-            style={{backgroundColor:'#f5f6f8'}}
+            className={`mt-6 ${classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
