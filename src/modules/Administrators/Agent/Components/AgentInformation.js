@@ -21,7 +21,25 @@ const TypographyWithClick = ({ children, onClick }) => {
 
 const AgentInformation = () => {
     const [popUp, setPopUp] = useState(false)
+    const [tableData, setTableData] = useState({
+        PollingInterval1: 94,
+        PollingInterval2: 57,
+    })
+
     const { t } = useTranslation();
+
+    const InputNumberValidation = (event) => {
+        const { name, value } = event.target;
+        setTableData((prevState) => {
+            let percentageValue = parseInt(value);
+            if (percentageValue > 9999) percentageValue = 9999;
+            if (percentageValue < 0) percentageValue = 0;
+            return {
+                ...prevState,
+                [name]: percentageValue,
+            }
+        })
+    }
 
     const showPopUp = () => {
         setPopUp(true);
@@ -31,41 +49,28 @@ const AgentInformation = () => {
         {
             id: 1,
             StatusId: "Running",
-            Name: <TextField
-                style={{ width: '100%' }}
-                name="noticeUsageLevel"
-                className="AgentTextField"
-                variant="outlined"
-                size="small"
-                defaultValue={'Sales'} />
-            ,
+            Name: 'Sales',
             IP: "10.10.10.21",
             HostName: "myhost-101",
             Version: '1.0.1',
             StartDate: '2021/04/25 10:00:22',
             LastCollectDate: '2022-06-13 10:00:22',
             PollingInterval: <TextField
-                style={{ width: '100%' }}
-                name="noticeUsageLevel"
+                style={{ width: '100%', }}
+                name="PollingInterval1"
                 variant="outlined"
                 className="AgentTextRight AgentTextField"
                 size="small"
                 type="number"
-                defaultValue={10} />
-            ,
+                value={tableData.PollingInterval1}
+                onChange={InputNumberValidation}
+            />,
             Action: '',
         },
         {
             id: 2,
             StatusId: "No response",
-            Name: <TextField
-                style={{ width: '100%', margin: '0px' }}
-                name="noticeUsageLevel"
-                className="AgentTextField"
-                variant="outlined"
-                size="small"
-                defaultValue={'Marketing'} />
-            ,
+            Name: 'Marketing',
             IP: "10.10.20.33",
             HostName: "myhost-102",
             Version: '1.0.2',
@@ -73,13 +78,14 @@ const AgentInformation = () => {
             LastCollectDate: '',
             PollingInterval: <TextField
                 style={{ width: '100%', }}
-                name="noticeUsageLevel"
+                name="PollingInterval2"
                 variant="outlined"
                 className="AgentTextRight AgentTextField"
                 size="small"
                 type="number"
-                defaultValue={30} />
-            ,
+                value={tableData.PollingInterval2}
+                onChange={InputNumberValidation}
+            />,
             Action: '',
         },
     ];
@@ -102,9 +108,14 @@ const AgentInformation = () => {
             label: t("Name"),
             canSort: true,
             render: (Rows) => (
-                <Typography variant="body1" >
-                    {Rows.Name}
-                </Typography>
+                <TextField
+                    style={{ width: '100%', margin: '0px' }}
+                    name="noticeUsageLevel"
+                    className="AgentTextField"
+                    variant="outlined"
+                    size="small"
+                    defaultValue={Rows.Name}
+                />
             ),
         },
         {

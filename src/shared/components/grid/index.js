@@ -116,6 +116,13 @@ const Grid = ({
     getSelection: state.selectedRows,
   })
 
+  const SelectedColoumClickEvent = (label) => {
+    if (label === 'Name' || label === 'Polling Interval (Minutes)' || label === 'Action') {
+    } else {
+      clickEvent()
+    }
+  }
+
   return (
     <div className={classes.root}>
       <TableContainer className={clsx(classes.container, passedClasses.container)}>
@@ -231,6 +238,7 @@ const Grid = ({
                           <TableCell
                             key={`${column.label || 'grid-column'}-${columnIndex}${row.id}`}
                             className={clsx(classes.tableCell, passedClasses.tableCell, column.headerClasss)}
+                            onClick={() => { SelectedColoumClickEvent(column.label) }}
                           >
                             <Tooltip title={row[column.field] || ''} placement='top-start'>
                               <Typography variant='body1' className={clsx('', classes.fontsin)}>{content} </Typography>
@@ -245,7 +253,6 @@ const Grid = ({
                   <TableRow
                     hover
                     key={row.id}
-                    onClick={() => { clickEvent() }}
                     className={clsx(classes.row, `${rows.length === 1 ? classes.removeHoverEffect : ''}`)}
                   >
                     {content}
