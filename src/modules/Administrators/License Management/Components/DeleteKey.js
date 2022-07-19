@@ -24,8 +24,8 @@ const DeleteKey = ({ removeDeleteKeyPopUp }) => {
                                 <p className="HeadParaCenter">You Will not be able to use the application anymore!</p>
                             </div>
                             <div className="p-4 d-flex f-justify-center f-align-center">
-                                <Button variant="contained" style={{ textTransform: 'capitalize' }} onClick={() => { removeDeleteKeyPopUp(false) }} className="DeleteKeyBtn">{'Cancel'} </Button>
-                                <Button style={{ textTransform: 'capitalize' }} onClick={() => { removeDeleteKeyPopUp(false) }} variant="contained" className="DeleteKeyBtn Btn-Color"> {'Ok'} </Button>
+                                <Button variant="contained" style={{ textTransform: 'capitalize' }} onClick={() => { removeDeleteKeyPopUp(false) }} className="DeleteKeyBtn mr-3">{'Cancel'} </Button>
+                                <Button style={{ textTransform: 'capitalize' }} onClick={() => { removeDeleteKeyPopUp(false) }} variant="contained" className="DeleteKeyBtn ml-3 Btn-Color"> {'Ok'} </Button>
                             </div>
                         </div>
                     </div>

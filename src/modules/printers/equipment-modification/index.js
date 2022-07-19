@@ -28,7 +28,7 @@ import "../../../shared/Shared.css";
 
 let timeout = null;
 const defaultState = {
-  isDeleting:false,
+  isDeleting: false,
   isAdding: false,
   companyName: "",
   equipmentLocation: "",
@@ -38,13 +38,13 @@ const defaultState = {
   contractDescription: "",
   contractEndDate: "",
   contractStartDate: "",
-  endCustomerId:'',
-  isBookmark:'',
-  lastUpdateDt:'',
+  endCustomerId: '',
+  isBookmark: '',
+  lastUpdateDt: '',
   restData: {},
   isFetching: false,
-  startDate:'',
-  endDate:'',
+  startDate: '',
+  endDate: '',
   selectedFile: null,
   profileImage: "",
   showTerm: false,
@@ -60,6 +60,7 @@ const UsagePage = ({ match }) => {
   const [state, setState] = useState({
     ...defaultState,
   });
+  const [optionCompanyList, setOptionCompanyList] = useState([]);
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -74,7 +75,6 @@ const UsagePage = ({ match }) => {
 
   const GetDeviceInfoForWeb = async () => {
     setState((prevState) => ({ ...prevState, isFetching: true }));
-
     const { data, error } = await Service.GetDeviceInfoForWeb({
       deviceInfoId: match.params.deviceId,
       dt1: "",
@@ -103,7 +103,7 @@ const UsagePage = ({ match }) => {
         companyName: endCustomerName,
         equipmentLocation: location,
         printerInformation: productName,
-        endCustomerId:endCustomerId,
+        endCustomerId: endCustomerId,
         displayName: displayName,
         deviceSerial: deviceSerial,
         contractDescription,
@@ -111,11 +111,11 @@ const UsagePage = ({ match }) => {
         contractStartDate,
         isBookmark,
         lastUpdateDt,
-        startDate: contractStartDate ? formatDate(new Date(contractStartDate)):'',
-        endDate:contractEndDate ? formatDate(new Date(contractEndDate)):'',
+        startDate: contractStartDate ? formatDate(new Date(contractStartDate)) : '',
+        endDate: contractEndDate ? formatDate(new Date(contractEndDate)) : '',
         profileImage: `${config.frontendUrl}/${printerProfileImage}`,
         contractEndDateActual: contractEndDate,
-        lastProfileImage:printerProfileImage
+        lastProfileImage: printerProfileImage
       }));
       GetEndCustomerSearchList(endCustomerName);
     }
@@ -143,7 +143,6 @@ const UsagePage = ({ match }) => {
     formData.append('type', 'printer');
     formData.append('deviceInfoId', match.params.deviceId);
     formData.append("file", file);
-
     const { data } = await Service.uploadAvtar(formData);
     return data;
   };
@@ -151,7 +150,6 @@ const UsagePage = ({ match }) => {
   const handleSave = async () => {
     let imageUrl = state.lastProfileImage;
     setState((prevState) => ({ ...prevState, isFetching: true }));
-
     if (state.selectedFile) {
       const response = await handleUpload(state.selectedFile);
       if (response.error) {
@@ -161,7 +159,6 @@ const UsagePage = ({ match }) => {
       imageUrl = response?.filePath;
     }
 
-    
     const { data, error } = await Service.UpdateDeviceForWeb({
       deviceInfoId: match.params.deviceId,
       deviceSerial: state.deviceSerial,
@@ -174,7 +171,7 @@ const UsagePage = ({ match }) => {
       contractStartDate: state.startDate,
       contractDescription: state.contractDescription,
       isContractAdd: state.isContractAdd,
-      printerProfileImage:imageUrl
+      printerProfileImage: imageUrl
     });
     if (error) {
       toast.error(error);
@@ -192,7 +189,7 @@ const UsagePage = ({ match }) => {
     setState((prevState) => ({
       ...prevState,
       isAdding: defaultState.isAdding,
-      newCompany:'',
+      newCompany: '',
     }));
   };
 
@@ -212,7 +209,6 @@ const UsagePage = ({ match }) => {
 
   const GetEndCustomerSearchList = async (searchKeyword = '') => {
     setState((prevState) => ({ ...prevState, isFetching: true, isCompanyFetching: true }));
-
     const { data, error } = await Service.GetEndCustomerSearchList({
       dt1: "",
       onePageDataCount: "10",
@@ -234,7 +230,15 @@ const UsagePage = ({ match }) => {
 
   useEffect(() => {
     GetDeviceInfoForWeb();
+    GetEndCustomerSearchList();
   }, []);
+
+  useEffect(() => {
+    if (state.companyList.length === 1) {
+    } else {
+      setOptionCompanyList(state.companyList)
+    }
+  }, [state.companyList])
 
   const handleSearch = (search) => {
     clearTimeout(timeout);
@@ -260,7 +264,7 @@ const UsagePage = ({ match }) => {
       </div>
       <Paper elevation={4}>
         <div className="ml-8 mr-8">
-        <div className="d-flex flex-column p-4 f-align-center">
+          <div className="d-flex flex-column p-4 f-align-center">
             <div className="d-flex f-justify-center">
               <Avatar
                 id="printers-image"
@@ -284,24 +288,14 @@ const UsagePage = ({ match }) => {
               className="d-none"
             />
           </div>
-          {/* <TextField
-            fullWidth
-            size='small'
-            label={t('summarycompany name')}
-            name="companyName"
-            variant="outlined"
-            className="mt-8"
-            value={state.companyName}
-            onChange={handleChange}
-          /> */}
-           <Autocomplete
+          <Autocomplete
             freeSolo
             disableClearable
             value={state.companyName}
             classes={{
               listbox: classes.companySearch
             }}
-            options={[{ endCustomerName: `${state.companyName} (으)로 검색합니다.`}, ...state.companyList].map(item => item.endCustomerName)}
+            options={[{ endCustomerName: `${state.companyName} (으)로 검색합니다.` }, ...state.companyList].map(item => item.endCustomerName)}
             getOptionDisabled={(option) => (option || '').includes('(으)로 검색합니다.')}
             loading={state.isCompanyFetching}
             renderOption={(option) => (
@@ -320,10 +314,10 @@ const UsagePage = ({ match }) => {
             }}
             renderInput={(params) => (
               <TextField
-              {...params}
-              label={t("summarycompany name")}
-              margin="normal"
-              variant="outlined"
+                {...params}
+                label={t("summarycompany name")}
+                margin="normal"
+                variant="outlined"
                 onChange={(evt) => {
                   const { value } = evt.currentTarget;
                   setState(prevState => ({
@@ -389,7 +383,7 @@ const UsagePage = ({ match }) => {
             className="mb-8"
           />
           <div className='pb-4'>
-          <Typography variant='body1' className='text-bold'>{t('summaryPrinterContract')}</Typography>
+            <Typography variant='body1' className='text-bold'>{t('summaryPrinterContract')}</Typography>
           </div>
           <div className='d-flex f-align-center w-100 f-justify-between'>
             <Datepicker
@@ -430,7 +424,7 @@ const UsagePage = ({ match }) => {
                 setState((prevState) => ({
                   ...prevState,
                   contractEndDate: date,
-                  endDate:formatDate(date)
+                  endDate: formatDate(date)
                 }));
               }}
             />
@@ -439,7 +433,7 @@ const UsagePage = ({ match }) => {
                 <Button
                   variant="text"
                   className={classes.colorLink}
-                  style={{wordBreak:'keep-all'}}
+                  style={{ wordBreak: 'keep-all' }}
                   startIcon={<AddCircleSharpIcon className={classes.colorLink} />}
                   onClick={() =>
                     setState((prevState) => ({
@@ -447,7 +441,7 @@ const UsagePage = ({ match }) => {
                       contractStartDate: '',
                       startDate: '',
                       contractEndDate: '',
-                      endDate:'',
+                      endDate: '',
                       isContractAdd: 1,
                       contractDescription: '',
                     }))
@@ -457,7 +451,7 @@ const UsagePage = ({ match }) => {
                 </Button>
               )}
               <Button
-                style={{wordBreak:'keep-all'}}
+                style={{ wordBreak: 'keep-all' }}
                 variant="text"
                 className={`${classes.colorLink} Text-Color`}
                 startIcon={<FormatListBulletedIcon className={`${classes.colorLink} Text-Color`} />}
@@ -487,7 +481,7 @@ const UsagePage = ({ match }) => {
             onClick={() => {
               history.goBack();
             }}
-            style={{height:'36px'}}
+            style={{ height: '36px' }}
           >
             {t('summarycancel')}
           </Button>
@@ -525,15 +519,12 @@ const UsagePage = ({ match }) => {
               classes={{
                 listbox: classes.companySearch
               }}
-              options={[{ endCustomerName: `${state.companyName} (으)로 검색합니다.` }, ...state.companyList].map(item => item.endCustomerName)}
-              getOptionDisabled={(option) => (option || '').includes('(으)로 검색합니다.')}
+              options={optionCompanyList.map(item => item.endCustomerName)}
+              getOptionDisabled={(option) => (option || '')}
               loading={state.isCompanyFetching}
               renderOption={(option) => (
                 <>
-                  {(option || '').includes('(으)로 검색합니다.')
-                    ? (<><div className='pb-4'>{option}</div></>)
-                    : option
-                  }
+                  {(option || '') ? (<><div className='pb-4'>{option}</div></>) : option}
                 </>
               )}
               onChange={(evt, newCompany) => {
@@ -565,22 +556,6 @@ const UsagePage = ({ match }) => {
                 />
               )}
             />
-            {/* <TextField
-              fullWidth
-              type="text"
-              label="Add New Company"
-              name="newCompany"
-              className="mb-4"
-              variant="outlined"
-              value={state.newCompany}
-              onChange={(evt) => {
-                const { name, value } = evt.target;
-                setState((prevState) => ({
-                  ...prevState,
-                  [name]: value,
-                }));
-              }}
-            /> */}
           </DialogContent>
           <Divider />
           <DialogActions>
@@ -601,7 +576,7 @@ const UsagePage = ({ match }) => {
               </Button>
             </div>
           </DialogActions>
-        </Dialog> 
+        </Dialog>
       )}
       <Term
         open={state.showTerm}

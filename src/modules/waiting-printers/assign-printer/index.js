@@ -33,10 +33,11 @@ const defaultState = {
   companyList: [],
   isCompanyFetching: false,
 };
-const noop = () => {};
+const noop = () => { };
 const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
   const { t } = useTranslation();
   const [state, setState] = useState(defaultState);
+  const [optionCompanyList, setOptionCompanyList] = useState([]);
   const classes = useStyles();
   const history = useHistory();
   const handleChange = (evt) => {
@@ -67,7 +68,6 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
 
   const GetDeviceInfoForWeb = async () => {
     setState((prevState) => ({ ...prevState, isFetching: true }));
-
     const { data, error } = await Service.GetDeviceInfoForWeb({
       deviceInfoId: match.params.id,
       dt1: "",
@@ -91,7 +91,6 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
 
   const GetEndCustomerSearchList = async (searchKeyword = '') => {
     setState((prevState) => ({ ...prevState, isFetching: true, isCompanyFetching: true, }));
-
     const { data, error } = await Service.GetEndCustomerSearchList({
       dt1: "",
       onePageDataCount: "10",
@@ -112,7 +111,6 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
 
   const handleAssignPrinter = async () => {
     setState((prevState) => ({ ...prevState, isFetching: true }));
-
     const { data, error } = await Service.AssignWaitDevice({
       deviceInfoId: match.params.id,
       deviceSerial: state.deviceSerial,
@@ -136,7 +134,15 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
 
   useEffect(() => {
     GetDeviceInfoForWeb();
+    GetEndCustomerSearchList();
   }, []);
+
+  useEffect(() => {
+    if (state.companyList.length === 1) {
+    } else {
+      setOptionCompanyList(state.companyList)
+    }
+  }, [state.companyList])
 
   const handleSearch = (search) => {
     clearTimeout(timeout);
@@ -148,7 +154,6 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
   return (
     <>
       <div className="d-flex f-align-center f-justify-between mb-8">
-        
         <Typography variant="h4">
           {t("summaryEquipment modification")}
         </Typography>
@@ -160,7 +165,6 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
               onClick={() =>
                 setState((prevState) => ({ ...prevState, isFormOpen: true }))
               }
-              
             >
               <AddCircleIcon className={`${classes.colorLink} Add-Btn`} />
             </IconButton>
@@ -169,11 +173,11 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
           <Autocomplete
             freeSolo
             disableClearable
-            value={{endCustomerName: state.companyName, endCustomerId: state.endCustomerId}}
+            value={{ endCustomerName: state.companyName, endCustomerId: state.endCustomerId }}
             classes={{
               listbox: classes.companySearch
             }}
-            options={[{ endCustomerName: `${state.companyName} (으)로 검색합니다.`}, ...state.companyList]}
+            options={[{ endCustomerName: `${state.companyName} (으)로 검색합니다.` }, ...state.companyList]}
             getOptionLabel={option => option.endCustomerName || ''}
             getOptionDisabled={(option) => (option?.endCustomerName || '').includes('(으)로 검색합니다.')}
             loading={state.isCompanyFetching}
@@ -296,14 +300,49 @@ const AssignPrinters = ({ match, getWaitDeviceCount = noop }) => {
         </DialogTitle>
         <Divider />
         <DialogContent className="mt-4">
-          <TextField
-            fullWidth
-            label={t("Add New company")}
-            name="name"
-            variant="outlined"
-            value={state.name}
-            className="mb-8"
-            onChange={handleChange}
+          <Autocomplete
+            freeSolo
+            disableClearable
+            value={state.newCompany}
+            classes={{
+              listbox: classes.companySearch
+            }}
+            options={optionCompanyList.map(item => item.endCustomerName)}
+            getOptionDisabled={(option) => (option || '')}
+            loading={state.isCompanyFetching}
+            renderOption={(option) => (
+              <>
+                {(option || '') ? (<><div className='pb-4'>{option}</div></>) : option}
+              </>
+            )}
+            onChange={(evt, newCompany) => {
+              setState(prevState => ({
+                ...prevState,
+                newCompany,
+              }));
+            }}
+            renderInput={(params) => (
+              <TextField
+                fullWidth
+                type="text"
+                label="Add New Company"
+                name="newCompany"
+                className="mb-4"
+                variant="outlined"
+                value={state.newCompany}
+                {...params}
+                margin="normal"
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {state.isCompanyFetching ? <CircularProgress color="inherit" size={20} /> : null}
+                      {params.InputProps.endAdornment}
+                    </>
+                  ),
+                }}
+              />
+            )}
           />
         </DialogContent>
         <Divider />
