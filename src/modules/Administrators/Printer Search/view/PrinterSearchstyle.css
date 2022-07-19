@@ -115,7 +115,7 @@
 }
 
 .ButtonSimilarWidth {
-  width: 7%;
+  width: 80px !important;
   color: #fff !important;
 }
 

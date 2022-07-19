@@ -23,14 +23,13 @@ const SystemErrorNotificationSetting = () => {
                     <div className="SMPTInnerDivs mt-3">
                         <p >{t('Manager in charge')}</p>
                         <TextField
-                            className="Errortextfield setHeightTextfield"
-                            style={{ width: '30%', padding: '0px', height: '40px' }}
+                            className="Errortextfield setHeightTextfield ManagerinchargeTextfield"
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
                         />
-                        <div style={{ width: '25%' }}>
-                            <p style={{ paddingLeft: '10px', width: '100%' }}> User_id@smtp_server.com </p>
+                        <div className="ManagerinchargeTextDiv">
+                            <p>User_id@smtp_server.com </p>
                         </div>
                     </div>
                     <div className="SMPTInnerDivs mt-3">
@@ -39,8 +38,8 @@ const SystemErrorNotificationSetting = () => {
                             onChange={selectMonth}
                             displayEmpty
                             variant="outlined"
+                            className="PeriodDropDown"
                             value={month}
-                            style={{ height: "45px", width: "30%" }}
                         >
                             <MenuItem value={0}>{t("processSelect")}</MenuItem>
                             <MenuItem value={1}>1</MenuItem>
@@ -56,8 +55,8 @@ const SystemErrorNotificationSetting = () => {
                             <MenuItem value={11}>11</MenuItem>
                             <MenuItem value={12}>12</MenuItem>
                         </Select>
-                        <div style={{ width: '25%' }}>
-                            <p style={{ paddingLeft: '10px', width: '100%' }}> Hour(s)</p>
+                        <div className="PeriodTextDiv">
+                            <p> Hour(s)</p>
                         </div>
                     </div>
                     <div className="check-Box-main-div mt-3 mb-3">
@@ -72,7 +71,7 @@ const SystemErrorNotificationSetting = () => {
                         </div>
                     </div>
                     <div className="ButtonDiv">
-                        <Button className="Btn-Color" variant="contained" style={{ width: '10%', height:'40px' }}
+                        <Button className="Btn-Color ButtonSimilarWidth" variant="contained"
                         >
                             {t("Save")}
                         </Button>

@@ -448,7 +448,7 @@ const EquipmentSummary = ({ match }) => {
             <div className="d-flex">
               <Button
                 variant="outlined"
-                className={`mt-2 mb-2 ${classes.ButtonSimilarWidth}`}
+                className={`mt-2 mb-2 mr-2 ${classes.DeleteButtonSimilarWidth}`}
                 onClick={() => {
                   setState((prevState) => ({
                     ...prevState,
@@ -460,7 +460,7 @@ const EquipmentSummary = ({ match }) => {
               </Button>
               <Button
                 variant="outlined"
-                className={`mt-2 mb-2 bg-danger color-white ${classes.ButtonSimilarWidth}`}
+                className={`mt-2 mr-2 mb-2 bg-danger color-white ${classes.DeleteButtonSimilarWidth}`}
                 onClick={handleDeleteConfirmation}
               >
                 {t("summarydelete")}

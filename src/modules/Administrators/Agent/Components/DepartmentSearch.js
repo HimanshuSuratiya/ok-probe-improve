@@ -125,12 +125,12 @@ const DepartmentSearch = ({ setClosePopUp }) => {
                 </DialogContent>
                 <DialogActions>
                   <div className="p-4">
-                    <Button style={{ backgroundColor: '#e0e0e0' }} disabled={false} className="mr-4" onClick={() => { setClosePopUp(false) }}>
+                    <Button variant="contained" className="mr-4" style={{ width: '80px' }} onClick={() => { setClosePopUp(false) }}>
                       {t('settingsCancel')}
                     </Button>
                     <Button
                       variant="contained"
-                      className="Btn-Color"
+                      className="Btn-Color DepartmentButtonSimilarWidth"
                       disabled={false}
                     >
                       {t('Save')}

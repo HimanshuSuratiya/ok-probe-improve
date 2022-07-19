@@ -41,7 +41,7 @@ const SMTPSettings = ({ setClosePopUp }) => {
             <Paper>
                 <div style={{ position: 'fixed', zIndex: '1300', inset: '0px' }}>
                     <div className="MuiBackdrop-root">
-                        <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%', backgroundColor: '' }}>
+                        <div className="MuiDialog-container MuiDialog-scrollPaper">
                             <div style={{ height: '560px' }} className="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded setWidth">
                                 <DialogTitle>
                                     <div className="d-flex f-align-center f-justify-between">
@@ -55,8 +55,8 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                 </DialogTitle>
                                 <Divider />
                                 <DialogContent className="mt-2">
-                                    <div style={{ background: '', height: '56px', width: '100%', display: 'flex', alignItems: 'center' }}>
-                                        <p style={{ margin: '0px', fontSize: '16px', width: '35%' }}>{t('SNMP Version')}</p>
+                                    <div className="SNMPVersionDiv">
+                                        <p >{t('SNMP Version')}</p>
                                         <form>
                                             <input type="radio" id="version-2" name="version" value="version-2" defaultChecked onClick={() => { setCheckedVersion3(false) }} />
                                             <label style={{ fontSize: '16px' }} for="version">SNMPv1/v2</label>
@@ -97,9 +97,8 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                         variant="outlined"
                                     />
                                     <TextField
-                                        className="mt-4"
+                                        className={`mt-4 ${checkedVersion3 ? ' ' : 'disableColor'}`}
                                         disabled={checkedVersion3 ? '' : true}
-                                        style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
                                         fullWidth
                                         label={t('USM User')}
                                         name="email"
@@ -117,7 +116,7 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                                 variant="outlined"
                                                 onChange={updateAuthAlgorithm}
                                                 disabled={checkedVersion3 ? '' : true}
-                                                style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
+                                                className={`${checkedVersion3 ? ' ' : 'disableColor'}`}
                                             >
                                                 <MenuItem value={1}>MD5</MenuItem>
                                                 <MenuItem value={2}>SHA</MenuItem>
@@ -129,11 +128,10 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                         </FormControl>
                                     </Box>
                                     <TextField
-                                        className="mt-4"
+                                        className={`mt-4 ${checkedVersion3 ? ' ' : 'disableColor'}`}
                                         fullWidth
                                         label={t('Auth Password')}
                                         disabled={checkedVersion3 ? '' : true}
-                                        style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
                                         name="email"
                                         type="password"
                                         defaultValue={'HimanshuSuratiya'}
@@ -150,7 +148,7 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                                 variant="outlined"
                                                 onChange={updatePrivacyAlgorithm}
                                                 disabled={checkedVersion3 ? '' : true}
-                                                style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
+                                                className={`${checkedVersion3 ? ' ' : 'disableColor'}`}
                                             >
                                                 <MenuItem value={0}>DES</MenuItem>
                                                 <MenuItem value={1}>AES</MenuItem>
@@ -161,11 +159,10 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                         </FormControl>
                                     </Box>
                                     <TextField
-                                        className="mt-4"
+                                        className={`mt-4 ${checkedVersion3 ? ' ' : 'disableColor'}`}
                                         fullWidth
                                         label={t('Privacy Password')}
                                         disabled={checkedVersion3 ? '' : true}
-                                        style={{ backgroundColor: `${checkedVersion3 ? '' : '#f5f6f8'}` }}
                                         name="email"
                                         type="password"
                                         defaultValue={'HimanshuSuratiya'}
@@ -173,12 +170,12 @@ const SMTPSettings = ({ setClosePopUp }) => {
                                     />
                                 </DialogContent>
                                 <DialogActions>
-                                    <div className="p-4">
-                                        <Button variant="contained" className="mr-4" onClick={() => { setClosePopUp(false) }}>
+                                    <div className="p-4 mr-4">
+                                        <Button variant="contained" className="mr-4" style={{ width: '80px' }} onClick={() => { setClosePopUp(false) }}>
                                             {t('settingsCancel')}
                                         </Button>
                                         <Button
-                                            className="Btn-Color"
+                                            className="Btn-Color DepartmentButtonSimilarWidth"
                                             variant="contained"
                                             disabled={false}
                                             onClick={() => { setClosePopUp(false) }}

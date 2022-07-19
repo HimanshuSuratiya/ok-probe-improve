@@ -380,7 +380,7 @@ const ViewSummary = () => {
           <div className="d-flex">
             <Button
               variant="outlined"
-              className="mr-4 mt-2 mb-2"
+              className={`mr-4 mt-2 mb-2 ${classes.ButtonSimilarWidth}`}
               onClick={() => {
                 handleClose();
               }}
@@ -389,7 +389,7 @@ const ViewSummary = () => {
             </Button>
             <Button
               variant="contained"
-              className="mr-2 mt-2 mb-2 Btn-Color"
+              className={`mr-2 mt-2 mb-2 Btn-Color ${classes.ButtonSimilarWidth}`}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,

@@ -56,7 +56,7 @@ const AgentInformation = () => {
             StartDate: '2021/04/25 10:00:22',
             LastCollectDate: '2022-06-13 10:00:22',
             PollingInterval: <TextField
-                style={{ width: '100%', }}
+                fullWidth
                 name="PollingInterval1"
                 variant="outlined"
                 className="AgentTextRight AgentTextField"
@@ -77,7 +77,7 @@ const AgentInformation = () => {
             StartDate: '2021/11/21 10:00:22',
             LastCollectDate: '',
             PollingInterval: <TextField
-                style={{ width: '100%', }}
+                fullWidth
                 name="PollingInterval2"
                 variant="outlined"
                 className="AgentTextRight AgentTextField"
@@ -109,7 +109,7 @@ const AgentInformation = () => {
             canSort: true,
             render: (Rows) => (
                 <TextField
-                    style={{ width: '100%', margin: '0px' }}
+                    fullWidth
                     name="noticeUsageLevel"
                     className="AgentTextField"
                     variant="outlined"
@@ -190,29 +190,27 @@ const AgentInformation = () => {
             label: t("Action"),
             render: (row) => {
                 return (
-                    <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <div className="d-flex f-align-center f-justify-between">
                         <Tooltip title={t('Edit')} placement='top-start'>
                             <Button
-                                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                                 variant="contained"
+                                className="iconButtons"
                             >
                                 <EditIcon />
                             </Button>
                         </Tooltip>
                         <Tooltip title={t('Save')} placement='top-start'>
                             <Button
-                                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                                 variant="contained"
-                                className="Btn-Color"
+                                className="Btn-Color iconButtons"
                             >
                                 <SaveIcon />
                             </Button>
                         </Tooltip>
                         <Tooltip title={t('Close')} placement='top-start'>
                             <Button
-                                style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
                                 variant="contained"
-                                className="deleteBtn"
+                                className="deleteBtn iconButtons"
                             >
                                 <CloseIcon />
                             </Button>

@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
     width: '8%',
   },
 
+  DeleteButtonSimilarWidth: {
+    width: '80px',
+  },
+
   startIcon: {
     borderRadius: '0.25rem',
     alignItems: 'center',

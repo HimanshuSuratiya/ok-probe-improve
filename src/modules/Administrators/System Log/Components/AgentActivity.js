@@ -129,14 +129,14 @@ const AgentActivity = ({ match, getUnassignDeviceCount = noop }) => {
                 <Typography variant="h4">{t("Agent Activity")}</Typography>
             </div>
             <Paper elevation={4}>
-                <div className="d-flex p-4" style={{ alignItems: 'center' }}>
+                <div className="d-flex p-4 f-align-center">
                     <TextField
                         variant="outlined"
                         size="small"
                         placeholder={t('processSearch')}
                         InputProps={{ endAdornment: <SearchIcon /> }}
                     />
-                    <div className="MainDateDiv" style={{ height: '47px', marginLeft: '30px', width: '650px', display: 'flex', justifyContent: 'space-between', padding: '0px 5px', alignItems: 'center' }}>
+                    <div className="MainDateDiv dateDiv">
                         <Datepicker
                             className="set-default-date"
                             label={t("Start Data")}
@@ -162,7 +162,7 @@ const AgentActivity = ({ match, getUnassignDeviceCount = noop }) => {
                 <Grid hasSelection={false} columns={columnConfig} rows={Rows} />
                 <div className="viewBtn">
                     <Link to={`${match.path}/system-log-management`}>
-                        <Button style={{ marginBottom: '8px' }} className="Btn-Color" variant="contained">View</Button>
+                        <Button className="Btn-Color ButtonSimilarWidth" variant="contained">View</Button>
                     </Link>
                 </div>
             </Paper>

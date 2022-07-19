@@ -23,7 +23,6 @@ const SMPTSettings = () => {
                         <p >{t('Email Server * ')}</p>
                         <TextField
                             className="textfield"
-                            style={{ width: '70%', padding: '0px' }}
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
@@ -35,7 +34,6 @@ const SMPTSettings = () => {
                         <p >{t('ID')}</p>
                         <TextField
                             className="textfield"
-                            style={{ width: '70%', padding: '0px' }}
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
@@ -70,7 +68,6 @@ const SMPTSettings = () => {
                         <p >{t('Default sender email * ')}</p>
                         <TextField
                             className="textfield"
-                            style={{ width: '70%', padding: '0px' }}
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
@@ -86,7 +83,7 @@ const SMPTSettings = () => {
                             onChange={updateSecure}
                             displayEmpty
                             variant="outlined"
-                            style={{ height: "45px", width: "70%" }}
+                            style={{ height: "45px" }}
                             disabled={true}
                         >
                             <MenuItem value={0}>{t("processSelect")}</MenuItem>
@@ -98,7 +95,6 @@ const SMPTSettings = () => {
                         <p >{t('Port Number * ')}</p>
                         <TextField
                             className="textfield"
-                            style={{ width: '70%', padding: '0px' }}
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"

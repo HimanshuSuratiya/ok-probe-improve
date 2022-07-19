@@ -304,7 +304,7 @@ const ViewNewPrinters = ({ match }) => {
           <div className="d-flex">
             <Button
               variant="outlined"
-              className="mr-4 mt-2 mb-2"
+              className={`mr-4 mt-2 mb-2 ${classes.DeleteButtonSimilarWidth}`}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
@@ -317,7 +317,7 @@ const ViewNewPrinters = ({ match }) => {
             </Button>
             <Button
               variant="outlined"
-              className="mr-2 mt-2 mb-2 bg-danger color-white"
+              className={`mr-2 mt-2 mb-2 bg-danger color-white ${classes.DeleteButtonSimilarWidth}`}
               onClick={handleDeleteConfirmation}
             >
               {t("newPrinterdelete")}

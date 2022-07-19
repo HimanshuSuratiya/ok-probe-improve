@@ -73,7 +73,6 @@ td button {
 
 .other-page-table-main .browserBtn {
     margin-left: 15px;
-    width: 120px;
 }
 
 .textClass {
@@ -117,13 +116,17 @@ td button {
 }
 
 .iconButtons {
-    margin: 0px 6px;
-    padding: 0px;
-    min-width: 38px;
+    margin: 0px 6px !important;
+    padding: 0px !important;
+    min-width: 38px !important;
 }
 
 .disableColor {
     background-color: #f5f6f8;
+}
+
+.ButtonSimilarWidth {
+    width: 80px !important;
 }
 
 @media only screen and (max-width:570px) {

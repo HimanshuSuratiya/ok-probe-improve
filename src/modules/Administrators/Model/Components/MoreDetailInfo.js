@@ -414,7 +414,7 @@ const MoreDetailInfo = () => {
                     defaultValue={""}
                     size="small"
                   />
-                  <Button variant="contained" className="browserBtn Btn-Color"> Browser </Button>
+                  <Button variant="contained" className="browserBtn Btn-Color ButtonSimilarWidth"> Browser </Button>
                 </div>
                 <a className="textClass" >-Filename can be alphanumeric characters,'-' and '-'</a>
                 <br />
@@ -454,7 +454,7 @@ const MoreDetailInfo = () => {
                     defaultValue={""}
                     size="small"
                   />
-                  <Button variant="contained" className="browserBtn Btn-Color"> Browser </Button>
+                  <Button variant="contained" className="browserBtn Btn-Color ButtonSimilarWidth"> Browser </Button>
                   <br />
                   <p className="textClass"> <input type="checkbox" /> Date Existing Image </p>
                   <a className="textClass">-Filename can be alphanumeric characters,'-' and '-', 65x65
@@ -468,7 +468,7 @@ const MoreDetailInfo = () => {
           </tbody>
         </table>
         <div className="mt-3" style={{ height: 'auto', width: '100%', display: 'flex', justifyContent: 'right' }}>
-          <Button className="Btn-Color mb-3 mr-3" variant="contained">Save</Button>
+          <Button className="Btn-Color mb-3 mr-3 ButtonSimilarWidth" variant="contained">Save</Button>
         </div>
       </Paper>
       <h1 className="Heading mt-5">{t('processModelConsumableThreshold')}</h1>

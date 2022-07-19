@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import Service from "../../service";
-import {Typography,Button,Paper,FormControlLabel,Checkbox,} from "@material-ui/core";
+import { Typography, Button, Paper, FormControlLabel, Checkbox, } from "@material-ui/core";
 import { Grid, BarChart, Datepicker } from "shared/components";
 import { writeXLSFile, getToday, getTime, getDateObject } from "utils";
 import InfoIcon from "@material-ui/icons/Info";
@@ -22,7 +22,7 @@ const defaultState = {
   showSaveReport: false,
 };
 
-const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayName=''}) => {
+const AdvanveSearch = ({ deviceInfo, deviceInfoId, endCustomerName = '', displayName = '' }) => {
   const { lang } = useContext(AppContext);
   const [state, setState] = useState({
     ...defaultState,
@@ -197,7 +197,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
 
   useEffect(() => {
     GetDeviceReportData();
-  }, [deviceInfoId, state.viewMode,state.dateFrom,state.dateTo]);
+  }, [deviceInfoId, state.viewMode, state.dateFrom, state.dateTo]);
 
   //JSX
   return (
@@ -246,12 +246,14 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
                 variant="contained"
                 className="mr-2 Btn-Color"
                 onClick={() => exportToExcel()}
+                style={{ width: '80px' }}
               >
                 {t('userPageExcel')}
               </Button>
               <Button
                 variant="contained"
                 className="mr-2 Btn-Color"
+                style={{ width: '80px' }}
                 onClick={() => {
                   SaveReport();
                 }}
@@ -261,6 +263,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
               <Button
                 variant="contained"
                 className="Btn-Color"
+                style={{ width: '80px' }}
                 onClick={() => {
                   setState((prevState) => ({
                     ...prevState,
@@ -268,7 +271,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
                   }));
                 }}
               >
-               {t('userPageList')}
+                {t('userPageList')}
               </Button>
             </div>
           </div>
@@ -276,7 +279,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
             <Button
               variant="contained"
               color={state.viewMode == "D" ? "primary" : ""}
-              style={{width:'8%'}}
+              style={{ width: '80px' }}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
@@ -290,7 +293,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
             <Button
               variant="contained"
               className={state.viewMode == "M" ? "Btn-Color mr-2" : "mr-2"}
-              style={{width:'8%'}}
+              style={{ width: '80px' }}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,
@@ -303,7 +306,7 @@ const AdvanveSearch = ({ deviceInfo, deviceInfoId,endCustomerName='' ,displayNam
             <Button
               variant="contained"
               className={state.viewMode == "Y" ? "Btn-Color" : ""}
-              style={{width:'8%'}}
+              style={{ width: '80px' }}
               onClick={() => {
                 setState((prevState) => ({
                   ...prevState,

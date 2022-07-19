@@ -169,6 +169,8 @@ ul.ServerTab li:last-child {
 
 .textfield {
     background-color: #f5f6f8;
+    width: 70%;
+    padding: 0px;
 }
 
 .textfield input {
@@ -229,6 +231,34 @@ ul.ServerTab li:last-child {
     height: 90%;
 }
 
+.ManagerinchargeTextfield {
+    width: 30%;
+    padding: 0px;
+    height: 40px;
+}
+
+.ManagerinchargeTextDiv {
+    width: 25%;
+    margin-top: 4px;
+}
+
+.ManagerinchargeTextDiv p {
+    padding-left: 10px;
+}
+
+.PeriodDropDown {
+    height: 45px;
+    width: 30%;
+}
+
+.PeriodTextDiv {
+    width: 25%;
+}
+
+.PeriodTextDiv p {
+    padding-left: 10px;
+}
+
 /* Common Css */
 .ButtonDiv {
     height: 60px !important;
@@ -238,6 +268,9 @@ ul.ServerTab li:last-child {
     justify-content: end;
     color: rgb(224, 224, 224) !important;
     position: relative;
-    bottom: 7px;
-    right: 18px;
+    right: 13px;
+}
+
+.ButtonSimilarWidth {
+    width: 80px !important;
 }

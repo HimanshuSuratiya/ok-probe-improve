@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import { Button } from "@material-ui/core";
 import AddIcon from '@material-ui/icons/Add';
@@ -21,7 +20,7 @@ const AssignGroup = () => {
                     <div className="divideDiv1">
                         <div className="innerDivs">
                             <BackupTableIcon />
-                            <p style={{ marginLeft: '12px' }}>Agent</p>
+                            <p className="ml-2">Agent</p>
                         </div>
                         <div class="agent-table-main-area">
                             <table>
@@ -50,16 +49,17 @@ const AssignGroup = () => {
                     <div className="divideDiv2">
                         <div className="innerDivs">
                             <BackupTableIcon />
-                            <p style={{ marginLeft: '12px' }}>Assigned Department</p>
-                            <Button
-                                className="AgentAddDiv Btn-Color"
-                                style={{ height: '46px', width: '160px', marginLeft: '8px' }}
-                                variant="contained"
-                                onClick={() => { setPopUp(!popUp) }}
-                            >
-                                <AddIcon />
-                                Add
-                            </Button>
+                            <p className="ml-2">Assigned Department</p>
+                            <Tooltip title="Add" placement='top-start'>
+                                <Button
+                                    className="AgentAddDiv Btn-Color AgentButtonSimilarWidth"
+                                    variant="contained"
+                                    onClick={() => { setPopUp(!popUp) }}
+                                >
+                                    <AddIcon />
+                                    Add
+                                </Button>
+                            </Tooltip>
                         </div>
                         <div class="agent-table-main-area SecondDiv">
                             <table>
