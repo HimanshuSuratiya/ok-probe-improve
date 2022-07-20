@@ -12,9 +12,14 @@ import Select from "@material-ui/core/Select";
 import { useTranslation } from "react-i18next";
 import useStyles from "./style";
 import $ from "jquery";
-import {formatDate,daysBetween,writeXLSFile,getToday,getTime,} from "utils";
+import { formatDate, daysBetween, writeXLSFile, getToday, getTime, } from "utils";
 import "../../../shared/Shared.css";
 import { Grid } from "shared/components";
+import Tooltip from '@material-ui/core/Tooltip';
+import EditIcon from '@mui/icons-material/Edit';
+import CloseIcon from '@mui/icons-material/Close';
+import SaveIcon from '@mui/icons-material/Save';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const defaultState = {
   entries: [],
@@ -23,7 +28,7 @@ const defaultState = {
   pageSize: 50,
   status: null,
   fetchingParnters: false,
-  fetchingPrinters:false,
+  fetchingPrinters: false,
   partnerSetting: {},
   order: null,
   orderBy: null,
@@ -33,7 +38,6 @@ const ViewPrinters = ({ match, history }) => {
   const search = useLocation().search;
   const pageSize = new URLSearchParams(search).get('pageSize') || 50;
   const pageNumber = new URLSearchParams(search).get('pageNumber') || 1;
-
   const classes = useStyles();
   const { t } = useTranslation();
   const printerState = [
@@ -42,10 +46,13 @@ const ViewPrinters = ({ match, history }) => {
     { label: t('printercaution'), value: "C" },
     { label: t('printercheck'), value: "W" },
   ];
+
   const [state, setState] = useState({
     ...defaultState,
     status: match?.params?.status ? match?.params?.status : printerState[0].value
   });
+  const [showOtherButton, setShowOtherButton] = useState(false)
+  const [disableEnable, setDisableEnable] = useState(true)
 
   const getRowCount = async (totalPage) => {
     const { data } = await Service.post({
@@ -115,7 +122,6 @@ const ViewPrinters = ({ match, history }) => {
 
   function getDeviceStatusTitle(deviceStatus) {
     deviceStatus = deviceStatus.toUpperCase();
-
     var deviceStatusTitle = "";
     if (deviceStatus == "A") {
       deviceStatusTitle = "전체";
@@ -126,7 +132,6 @@ const ViewPrinters = ({ match, history }) => {
     } else if (deviceStatus == "W") {
       deviceStatusTitle = "점검";
     }
-
     return deviceStatusTitle;
   }
 
@@ -135,6 +140,7 @@ const ViewPrinters = ({ match, history }) => {
     var today = formatDate(new Date());
     return daysBetween(lastUpdateDate, today);
   };
+
   const noticeNoEmail = () => {
     return state.partnerSetting.noticeNoEmail;
   };
@@ -166,7 +172,6 @@ const ViewPrinters = ({ match, history }) => {
       //         updatedRow[key]?.name ||
       //         updatedRow[key]?.friendlyName ||
       //         updatedRow[key];
-
       //       if (Array.isArray(updatedRow[key])) {
       //         updatedRow[key] = updatedRow[key].join(",") || updatedRow[key];
       //       }
@@ -183,7 +188,7 @@ const ViewPrinters = ({ match, history }) => {
       let today = getToday();
       let time = getTime();
       const sheetName = "장비목록_" + today + "_" + time;
-      setTimeout(() => writeXLSFile("deviceListTableForExcel", sheetName) ,1000);
+      setTimeout(() => writeXLSFile("deviceListTableForExcel", sheetName), 1000);
     }
   };
 
@@ -195,6 +200,164 @@ const ViewPrinters = ({ match, history }) => {
     }));
   }, []);
 
+  // const columnConfig = [
+  //   {
+  //     id: "status_order",
+  //     field: "status_order",
+  //     label: t('printerStatus'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography
+  //       style={{ textAlign: "center"}}
+  //         variant="body1"
+  //         className={clsx({
+  //           "color-error": row.status == "W",
+  //           [classes.warning]: row.status == "C",
+  //         })}
+  //       >
+  //         {getDeviceStatusTitle(row.status)}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "company_name",
+  //     fieldName: "company_name",
+  //     label: t('printercustomer'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Link
+  //         className="Text-Color"
+  //         component={NavLink}
+  //         to={`/printers/${row.endCustomerId}/device/${row?.deviceInfoId}/last-updated-at/${row?.lastUpdateDt}`}
+  //       >
+  //         {row.endCustomerName}
+  //       </Link>
+  //     ),
+  //   },
+  //   {
+  //     id: "display_name",
+  //     field: "display_name",
+  //     label: t('printerModel'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography
+  //         variant="body1"
+  //       >
+  //         {row.displayName}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "device_serial",
+  //     field: "device_serial",
+  //     label: t('summarySerial Number'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography
+  //       style={{ textAlign: "center"}}
+  //         variant="body1"
+  //       >
+  //         {row.deviceSerial}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "location",
+  //     field: "location",
+  //     label: t('dashboardLocation'),
+  //     canSort: true,
+  //   },
+  //   {
+  //     id: "last_update_dt",
+  //     fieldName: "last_update_dt",
+  //     label: t('printerLast update date'),
+  //     canSort: true,
+  //     render: (row) => {
+  //       return (
+  //         <Typography
+  //         style={{ textAlign: "center"}}
+  //           variant="body1"
+  //           className={clsx("text-bold", {
+  //             "color-error": dateDiff(row.lastUpdateDt) >= noticeNoEmail(),
+  //             [classes.warning]: dateDiff(row.lastUpdateDt) == 0,
+  //           })}
+  //         >
+  //           {row.lastUpdateDt}
+  //         </Typography>
+  //       )
+  //     },
+  //   },
+  //   {
+  //     id: "total_usage_page",
+  //     fieldName: "total_usage_page",
+  //     label: t('printerTotal count'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography
+  //         variant="body1"
+  //        className={clsx("align-right")}
+  //       >
+  //         {row.totalUsagePage ? new Intl.NumberFormat('en-US').format(row.totalUsagePage) : ''}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "total_delta_page",
+  //     fieldName: "total_delta_page",
+  //     label: t('printerDelta'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography variant="body1" className={clsx("Text-Color align-right")}>
+  //         {row.totalDeltaPage ? new Intl.NumberFormat('en-US').format(row.totalDeltaPage) : ''}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "color_usage_page",
+  //     fieldName: "color_usage_page",
+  //     label: t('printerColour count'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography variant="body1" className={clsx("align-right")}>
+  //         {row.colorUsagePage ? new Intl.NumberFormat('en-US').format(row.colorUsagePage) : ''}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "color_delta_page",
+  //     fieldName: "color_delta_page",
+  //     label: t('printerDelta'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography variant="body1" className={clsx("Text-Color align-right")}>
+  //         {row.colorDeltaPage ? new Intl.NumberFormat('en-US').format(row.colorDeltaPage) : ''}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "mono_usage_page",
+  //     fieldName: "mono_usage_page",
+  //     label: t('printerMono'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography variant="body1" className={clsx("align-right")}>
+  //         {row.monoUsagePage ? new Intl.NumberFormat('en-US').format(row.monoUsagePage) : ''}
+  //       </Typography>
+  //     ),
+  //   },
+  //   {
+  //     id: "mono_delta_page",
+  //     fieldName: "mono_delta_page",
+  //     label: t('printerDelta'),
+  //     canSort: true,
+  //     render: (row) => (
+  //       <Typography variant="body1" className={clsx("Text-Color align-right")}>
+  //         {row.monoDeltaPage ? new Intl.NumberFormat('en-US').format(row.monoDeltaPage) : ''}
+  //       </Typography>
+  //     ),
+  //   },
+  // ];
+
   const columnConfig = [
     {
       id: "status_order",
@@ -203,7 +366,7 @@ const ViewPrinters = ({ match, history }) => {
       canSort: true,
       render: (row) => (
         <Typography
-        style={{ textAlign: "center"}}
+          style={{ textAlign: "center" }}
           variant="body1"
           className={clsx({
             "color-error": row.status == "W",
@@ -215,18 +378,25 @@ const ViewPrinters = ({ match, history }) => {
       ),
     },
     {
-      id: "company_name",
-      fieldName: "company_name",
-      label: t('printercustomer'),
+      id: "_IP",
+      field: "_IP",
+      label: t('IP Address'),
       canSort: true,
       render: (row) => (
-        <Link
-          className="Text-Color"
-          component={NavLink}
-          to={`/printers/${row.endCustomerId}/device/${row?.deviceInfoId}/last-updated-at/${row?.lastUpdateDt}`}
-        >
-          {row.endCustomerName}
-        </Link>
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'192.162.0.100'}
+        </Typography>
+      ),
+    },
+    {
+      id: "_Host_Name",
+      field: "_Host_Name",
+      label: t('Host Name'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Host Name'}
+        </Typography>
       ),
     },
     {
@@ -249,10 +419,47 @@ const ViewPrinters = ({ match, history }) => {
       canSort: true,
       render: (row) => (
         <Typography
-        style={{ textAlign: "center"}}
+          style={{ textAlign: "center" }}
           variant="body1"
         >
           {row.deviceSerial}
+        </Typography>
+      ),
+    },
+    {
+      id: "_Display_Name",
+      field: "_Display_Name",
+      label: t('Display Name'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Display Name'}
+        </Typography>
+      ),
+    },
+    {
+      id: "company_name",
+      fieldName: "company_name",
+      label: t('printercustomer'),
+      canSort: true,
+      render: (row) => (
+        <Link
+          className="Text-Color"
+          component={NavLink}
+          to={`/printers/${row.endCustomerId}/device/${row?.deviceInfoId}/last-updated-at/${row?.lastUpdateDt}`}
+        >
+          {row.endCustomerName}
+        </Link>
+      ),
+    },
+    {
+      id: "_Department",
+      field: "_Department",
+      label: t('Department'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Department'}
         </Typography>
       ),
     },
@@ -263,96 +470,109 @@ const ViewPrinters = ({ match, history }) => {
       canSort: true,
     },
     {
-      id: "last_update_dt",
-      fieldName: "last_update_dt",
-      label: t('printerLast update date'),
+      id: "_Customer_Info1",
+      field: "_Customer_Info1",
+      label: t('Customer Info-1'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Costomer Info-1'}
+        </Typography>
+      ),
+    },
+    {
+      id: "_Customer_Info2",
+      field: "__Customer_Info2",
+      label: t('Customer Info-2'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Costomer Info-2'}
+        </Typography>
+      ),
+    },
+    {
+      id: "_Contract_Start",
+      field: "_Contract_Start",
+      label: t('Contract Start'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Contract Start'}
+        </Typography>
+      ),
+    },
+    {
+      id: "_Contract_End",
+      field: "_Contract_End",
+      label: t('Contract End'),
+      canSort: true,
+      render: (row) => (
+        <Typography style={{ textAlign: "center" }} variant="body1">
+          {'Contract End'}
+        </Typography>
+      ),
+    },
+    {
+      id: "_action",
+      field: "_action",
+      label: t("Action"),
       canSort: true,
       render: (row) => {
         return (
-          <Typography
-          style={{ textAlign: "center"}}
-            variant="body1"
-            className={clsx("text-bold", {
-              "color-error": dateDiff(row.lastUpdateDt) >= noticeNoEmail(),
-              [classes.warning]: dateDiff(row.lastUpdateDt) == 0,
-            })}
-          >
-            {row.lastUpdateDt}
-          </Typography>
+          <div className="d-flex" style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+            {showOtherButton ?
+              <>
+                <Tooltip title={t('Save')} placement='top-start'>
+                  <Button
+                    style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
+                    variant="contained"
+                    className="Btn-Color"
+                    onClick={() => { setShowOtherButton(false) }}
+                  >
+                    <SaveIcon />
+                  </Button>
+                </Tooltip>
+                <Tooltip title={t('Close')} placement='top-start'>
+                  <Button
+                    style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
+                    variant="contained"
+                    className="deleteBtn"
+                    onClick={() => { setShowOtherButton(false) }}
+                  >
+                    <CloseIcon />
+                  </Button>
+                </Tooltip>
+              </>
+              :
+              <>
+                <Tooltip title={t('Edit')} placement='top-start'>
+                  <Button
+                    style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
+                    variant="contained"
+                    onClick={() => { setShowOtherButton(true); setDisableEnable(false) }}
+                  >
+                    <EditIcon />
+                  </Button>
+                </Tooltip>
+                <Tooltip title={t('Delete')} placement='top-start'>
+                  <Button
+                    style={{ margin: '0px 6px', padding: '0px', minWidth: '38px' }}
+                    variant="contained"
+                    className="deleteBtn"
+                  >
+                    <DeleteForeverIcon />
+                  </Button>
+                </Tooltip>
+              </>
+            }
+          </div>
         )
-      },
+      }
     },
-    {
-      id: "total_usage_page",
-      fieldName: "total_usage_page",
-      label: t('printerTotal count'),
-      canSort: true,
-      render: (row) => (
-        <Typography
-          variant="body1"
-         className={clsx("align-right")}
-        >
-          {row.totalUsagePage ? new Intl.NumberFormat('en-US').format(row.totalUsagePage) : ''}
-        </Typography>
-      ),
-    },
-    {
-      id: "total_delta_page",
-      fieldName: "total_delta_page",
-      label: t('printerDelta'),
-      canSort: true,
-      render: (row) => (
-        <Typography variant="body1" className={clsx("Text-Color align-right")}>
-          {row.totalDeltaPage ? new Intl.NumberFormat('en-US').format(row.totalDeltaPage) : ''}
-        </Typography>
-      ),
-    },
-    {
-      id: "color_usage_page",
-      fieldName: "color_usage_page",
-      label: t('printerColour count'),
-      canSort: true,
-      render: (row) => (
-        <Typography variant="body1" className={clsx("align-right")}>
-          {row.colorUsagePage ? new Intl.NumberFormat('en-US').format(row.colorUsagePage) : ''}
-        </Typography>
-      ),
-    },
-    {
-      id: "color_delta_page",
-      fieldName: "color_delta_page",
-      label: t('printerDelta'),
-      canSort: true,
-      render: (row) => (
-        <Typography variant="body1" className={clsx("Text-Color align-right")}>
-          {row.colorDeltaPage ? new Intl.NumberFormat('en-US').format(row.colorDeltaPage) : ''}
-        </Typography>
-      ),
-    },
-    {
-      id: "mono_usage_page",
-      fieldName: "mono_usage_page",
-      label: t('printerMono'),
-      canSort: true,
-      render: (row) => (
-        <Typography variant="body1" className={clsx("align-right")}>
-          {row.monoUsagePage ? new Intl.NumberFormat('en-US').format(row.monoUsagePage) : ''}
-        </Typography>
-      ),
-    },
-    {
-      id: "mono_delta_page",
-      fieldName: "mono_delta_page",
-      label: t('printerDelta'),
-      canSort: true,
-      render: (row) => (
-        <Typography variant="body1" className={clsx("Text-Color align-right")}>
-          {row.monoDeltaPage ? new Intl.NumberFormat('en-US').format(row.monoDeltaPage) : ''}
-        </Typography>
-      ),
-    },
-  ];
-  const myclassadd=(t('printerStatus') === "Status")?"break-spaces":'nowrap';
+  ]
+
+  const myclassadd = (t('printerStatus') === "Status") ? "break-spaces" : 'nowrap';
 
   useEffect(() => {
     setState((prevState) => ({
@@ -362,10 +582,12 @@ const ViewPrinters = ({ match, history }) => {
       orderBy: null,
     }));
   }, [match.params.status]);
+
   setTimeout(() => {
-    $(".makeStyles-container-13").css("padding-top",'10px')
-    $(".MuiButtonBase-root").css("white-space",myclassadd)
+    $(".makeStyles-container-13").css("padding-top", '10px')
+    $(".MuiButtonBase-root").css("white-space", myclassadd)
   }, 200);
+
   return (
     <>
       <div className="d-flex f-align-center f-justify-between mb-8">
@@ -379,7 +601,7 @@ const ViewPrinters = ({ match, history }) => {
           >
             <Select
               value={state.status}
-              style={{height:'46px'}}
+              style={{ height: '46px' }}
               onChange={(event) => {
                 history.push(`/printers/status/${event.target.value}`)
                 // setState((prevState) => ({
@@ -396,7 +618,7 @@ const ViewPrinters = ({ match, history }) => {
           <Button
             variant="contained"
             className="ml-4 Btn-Color"
-            style={{height:'45px', width:'15%'}}
+            style={{ height: '45px', width: '15%' }}
             onClick={() => exportToExcel()}
           >
             {t('printerExcel')}
@@ -430,11 +652,11 @@ const ViewPrinters = ({ match, history }) => {
           orderBy={state.orderBy}
         />
         <div className='d-none'>
-        <Grid
-          tableId="deviceListTableForExcel"
-          rows={state.excelData}
-          columns={columnConfig}
-        />
+          <Grid
+            tableId="deviceListTableForExcel"
+            rows={state.excelData}
+            columns={columnConfig}
+          />
         </div>
       </Paper>
     </>
