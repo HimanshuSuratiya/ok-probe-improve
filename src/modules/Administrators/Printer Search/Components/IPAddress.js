@@ -16,7 +16,7 @@ const ipRegex = /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[
 
 const noop = () => { };
 const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
-  const [Department, setDepartment] = useState(0);
+  const [agent, setAgent] = useState(0);
   const { t } = useTranslation();
   const [startIpError, setStartIpError] = useState(false);
   const [endIpError, setEndIpError] = useState(false);
@@ -24,6 +24,8 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
   const [firstTextfield, setFirstTextfield] = useState('');
   const [secondTextfield, setSecondTextfield] = useState('');
   const [showPaperAndData, setShowPaperAndData] = useState(false);
+  const [autoChecked, setAutoChecked] = useState(false);
+
   const checkSecondIpWRTFirstIp = (ip) => {
     const firstIP = firstTextfield
     const secondIp = ip
@@ -49,19 +51,22 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
       });
   }
 
-  const updateDepartment = (event) => {
-    setDepartment(event.target.value);
+  const updateAgent = (event) => {
+    setAgent(event.target.value);
   };
 
   const setAutoSearch = (e) => {
+    setStartIpError(false);
+    setEndIpError(false);
+    setFirstSecondPartError(false)
     if (e.target.checked) {
-      setFirstTextfield('1.1.1.1')
-      setSecondTextfield('1.1.1.1')
-      console.log('true', firstTextfield, secondTextfield)
+      setFirstTextfield('0.0.0.0')
+      setSecondTextfield('0.0.0.0')
+      setAutoChecked(!autoChecked);
     } else {
       setFirstTextfield('')
       setSecondTextfield('')
-      console.log('false', firstTextfield, secondTextfield)
+      setAutoChecked(!autoChecked);
     }
   }
 
@@ -73,11 +78,11 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
       <Paper elevation={4} className="p-4">
         <div className="agent-label-select-main-area">
           <div className="agent-label-select-box-area">
-            <label className="agent">{t("processagent")}</label>
+            <label className="agent">{t("processagent")}<span style={{ color: 'red' }}> * </span></label>
             <Select
               className="dropDown"
-              value={Department}
-              onChange={updateDepartment}
+              value={agent}
+              onChange={updateAgent}
               displayEmpty
               variant="outlined"
             >
@@ -102,9 +107,11 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
               helperText={(startIpError ? "IP Address is required." : '')}
               onChange={(e) => {
                 const isIpCorrect = ipRegex.test(e.target.value);
-                setStartIpError(!isIpCorrect);
+                setStartIpError(e.target.value === '' ? '' : !isIpCorrect);
                 setFirstTextfield(e.target.value);
                 setShowPaperAndData(false);
+                setSecondTextfield('')
+                setAutoChecked(e.target.value === '0.0.0.0' && secondTextfield === '0.0.0.0.0' ? true : false)
               }}
               InputProps={{
                 endAdornment: (
@@ -128,21 +135,22 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
           <div className="endip-label-input-box-area">
             <label className={`${endIpError || firstSecondPartError ? 'paddingBottom' : ''} EndIplabel`}>{t("processEndIp")}<span style={{ color: 'red' }}> * </span> </label>
             <TextField
-              error={endIpError || firstSecondPartError}
+              error={endIpError && secondTextfield != '' || firstSecondPartError && secondTextfield != ''}
               variant="outlined"
               className="textField"
               color="yellow"
               size="small"
               label="IP Address"
               value={secondTextfield}
-              helperText={(endIpError ? "IP Address is required." : firstSecondPartError ? 'Make sure first 2 parts are same and end IP is greater' : '')}
+              helperText={(endIpError && secondTextfield != '' ? "IP Address is required." : firstSecondPartError && secondTextfield != '' ? 'Make sure first 2 parts are same and end IP is greater' : '')}
               onChange={(e) => {
                 const isIpCorrect = ipRegex.test(e.target.value);
                 const isSecondIpCorrect = checkSecondIpWRTFirstIp(e.target.value)
-                setFirstSecondPartError(!isSecondIpCorrect)
-                setEndIpError(!isIpCorrect);
+                setFirstSecondPartError(e.target.value === '' ? '' : !isSecondIpCorrect)
+                setEndIpError(e.target.value === '' ? '' : !isIpCorrect);
                 setSecondTextfield(e.target.value);
                 setShowPaperAndData(false);
+                setAutoChecked(e.target.value === '0.0.0.0' && firstTextfield === '0.0.0.0' ? true : false)
               }}
               InputProps={{
                 endAdornment: (
@@ -151,16 +159,16 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
                       style={{
                         width: 15,
                         height: 22,
-                        color: endIpError ? "red" : "#35b803",
+                        color: endIpError && secondTextfield != '' || firstSecondPartError && secondTextfield != '' ? "red" : "#35b803",
                       }}
                     >
-                      {endIpError ? <InfoIcon /> : <CheckCircleOutlineIcon />}
+                      {endIpError && secondTextfield != '' || firstSecondPartError && secondTextfield != '' ? <InfoIcon /> : <CheckCircleOutlineIcon />}
                     </div>
                   </InputAdornment>
                 ),
               }}
             />
-            <span style={{ color: 'red' }}><Checkbox color="primary" onChange={(e) => { setAutoSearch(e) }} /> <span style={{ color: 'rgba(0, 0, 0, 0.87)', fontSize: '16px', fontWeight: 'bold' }}>Auto</span></span>
+            <span style={{ color: 'red', height: `${endIpError && secondTextfield != '' || firstSecondPartError && secondTextfield != '' ? '66px' : ''}` }}><Checkbox color="primary" checked={autoChecked} onChange={(e) => { setAutoSearch(e) }} /> <span style={{ color: 'rgba(0, 0, 0, 0.87)', fontSize: '16px', fontWeight: 'bold' }}>Auto</span></span>
           </div>
         </div>
         <div className="agent-start-end-smbtbtn-area">
@@ -168,7 +176,7 @@ const IPAddress = ({ match, getUnassignDeviceCount = noop }) => {
           <div className="smbt-btn-area">
             {/* <Link to={`${match.path}/search-result`}> */}
             <Button variant="contained" className="searchBtn" color="primary"
-              disabled={(!showPaperAndData && firstTextfield.length && !firstSecondPartError && secondTextfield.length && !endIpError && !startIpError) ? false : true} onClick={() => { fetchData(firstTextfield, secondTextfield); setShowPaperAndData(!showPaperAndData); }}
+              disabled={(agent != 0 && !showPaperAndData && firstTextfield.length && !firstSecondPartError && secondTextfield.length && !endIpError && !startIpError) ? false : true} onClick={() => { fetchData(firstTextfield, secondTextfield); setShowPaperAndData(!showPaperAndData); }}
             >
               {t("processSearchBtn")}
             </Button>

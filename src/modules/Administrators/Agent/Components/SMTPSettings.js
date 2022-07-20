@@ -18,8 +18,8 @@ import Select from "@mui/material/Select";
 
 const SMTPSettings = ({ setClosePopUp }) => {
     const { t } = useTranslation();
-    const [authAlgorithm, setAuthAlgorithm] = useState('');
-    const [privacyAlgorithm, setPrivacyAlgorithm] = useState('');
+    const [authAlgorithm, setAuthAlgorithm] = useState(1);
+    const [privacyAlgorithm, setPrivacyAlgorithm] = useState(1);
     const [checkedVersion3, setCheckedVersion3] = useState(false);
 
     const updateAuthAlgorithm = (event) => {
