@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import "../view/ServerStyle.css";
@@ -26,8 +25,7 @@ const SMPTSettings = () => {
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
-                            value={'mail.myepsoft.com'}
-                            disabled={true}
+                            defaultValue={'mail.myepsoft.com'}
                         />
                     </div>
                     <div className="SMPTInnerDivs mt-3">
@@ -37,8 +35,7 @@ const SMPTSettings = () => {
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
-                            value={'developer7@myepsoft.com'}
-                            disabled={true}
+                            defaultValue={'developer7@myepsoft.com'}
                         />
                     </div>
                     <div className="SMPTInnerDivs mt-3">
@@ -50,8 +47,7 @@ const SMPTSettings = () => {
                                 name="noticeUsageLevel"
                                 variant="outlined"
                                 size="small"
-                                value={'HimanshuSuratiya'}
-                                disabled={true}
+                                defaultValue={'HimanshuSuratiya'}
                             />
                             <TextField
                                 type="password"
@@ -59,8 +55,7 @@ const SMPTSettings = () => {
                                 name="noticeUsageLevel"
                                 variant="outlined"
                                 size="small"
-                                value={'HimanshuSuratiya'}
-                                disabled={true}
+                                defaultValue={'HimanshuSuratiya'}
                             />
                         </div>
                     </div>
@@ -71,8 +66,7 @@ const SMPTSettings = () => {
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
-                            value={'developer7@myepsoft.com'}
-                            disabled={true}
+                            defaultValue={'developer7@myepsoft.com'}
                         />
                     </div>
                     <div className="SMPTInnerDivs mt-3">
@@ -84,7 +78,6 @@ const SMPTSettings = () => {
                             displayEmpty
                             variant="outlined"
                             style={{ height: "45px" }}
-                            disabled={true}
                         >
                             <MenuItem value={0}>{t("processSelect")}</MenuItem>
                             <MenuItem value={1}>SSL</MenuItem>
@@ -98,8 +91,7 @@ const SMPTSettings = () => {
                             name="noticeUsageLevel"
                             variant="outlined"
                             size="small"
-                            value={465}
-                            disabled={true}
+                            defaultValue={465}
                         />
                     </div>
                     <div className="SMPTInnerDivs mt-3 mb-3">

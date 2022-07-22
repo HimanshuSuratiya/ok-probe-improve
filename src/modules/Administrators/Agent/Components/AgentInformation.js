@@ -9,9 +9,9 @@ import "../view/AgentStyle.css";
 import "../../../../shared/Shared.css";
 import SMTPSettings from "./SMTPSettings";
 import Tooltip from '@material-ui/core/Tooltip';
-import EditIcon from '@mui/icons-material/Edit';
-import CloseIcon from '@mui/icons-material/Close';
-import SaveIcon from '@mui/icons-material/Save';
+import NotStartedIcon from '@mui/icons-material/NotStarted';
+import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const TypographyWithClick = ({ children, onClick }) => {
     return <Typography variant="body1" style={{ textAlign: "center" }} onClick={onClick}>
@@ -191,28 +191,28 @@ const AgentInformation = () => {
             render: (row) => {
                 return (
                     <div className="d-flex f-align-center f-justify-between">
-                        <Tooltip title={t('Edit')} placement='top-start'>
+                        <Tooltip title={t('Pause')} placement='top-start'>
                             <Button
                                 variant="contained"
                                 className="iconButtons"
                             >
-                                <EditIcon />
+                                <NotStartedIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip title={t('Save')} placement='top-start'>
+                        <Tooltip title={t('Resume')} placement='top-start'>
                             <Button
                                 variant="contained"
                                 className="Btn-Color iconButtons"
                             >
-                                <SaveIcon />
+                                <PauseCircleFilledIcon />
                             </Button>
                         </Tooltip>
-                        <Tooltip title={t('Close')} placement='top-start'>
+                        <Tooltip title={t('newPrinterdelete')} placement='top-start'>
                             <Button
                                 variant="contained"
                                 className="deleteBtn iconButtons"
                             >
-                                <CloseIcon />
+                                <DeleteForeverIcon />
                             </Button>
                         </Tooltip>
                     </div>

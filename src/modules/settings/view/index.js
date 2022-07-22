@@ -20,6 +20,7 @@ import useStyles from './style';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import "../../../shared/Shared.css";
+import { getTokenData } from "utils";
 
 const defaultState = {
   additionalEmail: '',
@@ -30,13 +31,16 @@ const defaultState = {
   noticeUsageLevel: '',
   partnerName: '',
   isLoading: false,
-  errors:{}
+  errors: {}
 };
 
 const ViewSettings = ({ history }) => {
   const { t } = useTranslation();
   const classes = useStyles();
   const [state, setState] = useState(defaultState);
+  const userData = getTokenData();
+
+  console.log(userData.userRole, 'data');
 
   const fetchSetiingsData = async () => {
     setState(prevState => ({ ...prevState, isLoading: true }));
@@ -62,7 +66,7 @@ const ViewSettings = ({ history }) => {
     }
   };
 
- 
+
 
 
 
@@ -73,7 +77,7 @@ const ViewSettings = ({ history }) => {
 
   const handleChange = (evt) => {
     const { name, value } = evt.currentTarget;
-    let error= '';
+    let error = '';
     if (value && name == 'additionalEmail') {
       let email = value.trim().replace(/[\s;,]+/g, ',');
       const emails = email.split(',');
@@ -125,50 +129,50 @@ const ViewSettings = ({ history }) => {
           <TextField
             name='noticeNoEmail'
             fullWidth
-            className={`${classes.disableColor}`}
+            className={`${userData.userRole === '20' ? '' : classes.disableColor}`}
             variant='outlined'
             size='small'
             label={t('settingsWarningDuration')}
             value={state.noticeNoEmail}
             onChange={handleChange}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <TextField
             name='noticeUsageLevel'
-            className={`mt-6 ${classes.disableColor}`}
+            className={`mt-6 ${userData.userRole === '20' ? '' : classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
             label={t('settingsShortTime')}
             value={state.noticeUsageLevel}
             onChange={handleChange}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <TextField
             name='noticeNoUse'
-            className={`mt-6 ${classes.disableColor}`}
+            className={`mt-6 ${userData.userRole === '20' ? '' : classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
             label={t('settingsNoUsage')}
             value={state.noticeNoUse}
             onChange={handleChange}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <TextField
             name='deviceDeletePeriod'
-            className={`mt-6 ${classes.disableColor}`}
+            className={`mt-6 ${userData.userRole === '20' ? '' : classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
             label={t('settingsCompletelyDelete')}
             value={state.deviceDeletePeriod}
             onChange={handleChange}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <TextField
             name='defaultEmail'
-            className={`mt-6 ${classes.disableColor}`}
+            className={`mt-6 ${userData.userRole === '20' ? '' : classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
@@ -177,11 +181,11 @@ const ViewSettings = ({ history }) => {
             onChange={handleChange}
             error={!!state?.errors?.defaultEmail}
             helperText={state?.errors?.defaultEmail}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <TextField
             name='additionalEmail'
-            className={`mt-6 ${classes.disableColor}`}
+            className={`mt-6 ${userData.userRole === '20' ? '' : classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
@@ -190,18 +194,18 @@ const ViewSettings = ({ history }) => {
             onChange={handleChange}
             error={!!state?.errors?.additionalEmail}
             helperText={state?.errors?.additionalEmail}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <TextField
             name='partnerName'
-            className={`mt-6 ${classes.disableColor}`}
+            className={`mt-6 ${userData.userRole === '20' ? '' : classes.disableColor}`}
             fullWidth
             variant='outlined'
             size='small'
             label={t('settingsCompanyName')}
             value={state.partnerName}
             onChange={handleChange}
-            disabled={true}
+            disabled={userData.userRole === '20' ? false : true}
           />
           <div className='d-flex f-align-center pt-5'>
             <Button
