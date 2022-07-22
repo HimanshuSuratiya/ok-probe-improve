@@ -7,95 +7,90 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import { DialogActions, DialogContent, IconButton } from '@material-ui/core';
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
 import "../view/AgentStyle.css";
-import { AiOutlineFile, AiOutlineFolder } from "react-icons/ai";
-import { DiJavascript1, DiCss3Full, DiHtml5, DiReact } from "react-icons/di";
 import { Add, Remove } from "@material-ui/icons";
+import { Checkbox } from "@material-ui/core";
 import "../../../../shared/Shared.css";
+import FolderIcon from '@mui/icons-material/Folder';
 
 const DepartmentSearch = ({ setClosePopUp }) => {
   const { t } = useTranslation();
   const [icon, setIcons] = useState(true);
   const [isOpen, setIsOpen] = useState(true);
+  const [id, setId] = useState();
+  const [selectDepartment, setSelectDepartment] = useState([]);
 
-  const FILE_ICONS = {
-    js: <DiJavascript1 />,
-    css: <DiCss3Full />,
-    html: <DiHtml5 />,
-    jsx: <DiReact />
-  };
+  const Data = [
+    {
+      id: 1,
+      Dept: 'Dept-1',
+    },
+    {
+      id: 2,
+      Dept: 'Dept-2',
+    },
+    {
+      id: 3,
+      Dept: 'Dept-3',
+    },
+    {
+      id: 4,
+      Dept: 'Dept-4',
+    },
+    {
+      id: 5,
+      Dept: 'Dept-5',
+    },
+    {
+      id: 6,
+      Dept: 'Dept-6',
+    },
+    {
+      id: 7,
+      Dept: 'Dept-7',
+    },
+    {
+      id: 8,
+      Dept: 'Dept-8',
+    },
+    {
+      id: 9,
+      Dept: 'Dept-9',
+    },
+    {
+      id: 10,
+      Dept: 'Dept-10',
+    },
+    {
+      id: 11,
+      Dept: 'Dept-11',
+    },
+    {
+      id: 12,
+      Dept: 'Dept-12',
+    },
+  ]
 
-  const StyledTree = styled.div`
-    line-height: 1.5;
-  `;
-  const StyledFile = styled.div`
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-    span {
-      margin-left: 5px;
+  const checkBoxEvent = (id, e, Dept) => {
+    if (e.target.checked) {
+      setSelectDepartment(prevState => [...prevState, { id: id, Dept: Dept }]);
+    } else {
+      setSelectDepartment(prevState =>
+        prevState.filter(items => {
+          if (items.id != id) {
+            return items
+          }
+        }),
+      );
     }
-  `;
-  const StyledFolder = styled.div`
-    padding-left: 20px;
-  
-    .folder--label {
-      display: flex;
-      align-items: center;
-      span {
-        margin-left: 5px;
-      }
-    }
-  `;
-  const Collapsible = styled.div`
-    height: ${p => (p.isOpen ? "0" : "auto")};
-    overflow: hidden;
-  `;
+  }
 
-  const File = ({ name }) => {
-    let ext = name.split(".")[1];
-    return (
-      <StyledFile>
-        {/* render the extension or fallback to generic file icon  */}
-        {FILE_ICONS[ext] || <AiOutlineFile />}
-        <span>{name}</span>
-      </StyledFile>
-    );
-  };
-
-  const Folder = ({ name, children }) => {
-    const handleToggle = (e, name) => {
-      e.preventDefault();
-      if (name === 'Department') {
-        setIsOpen(!isOpen);
-        setIcons(!icon);
-      }
-    };
-
-    return (
-      <StyledFolder>
-        <div className="folder--label" onClick={(e) => { handleToggle(e, name) }}>
-          <AiOutlineFolder />
-          <span>{name}</span>
-        </div>
-        <Collapsible isOpen={isOpen}>{children}</Collapsible>
-      </StyledFolder>
-    );
-  };
-
-  const Tree = ({ children }) => {
-    return <StyledTree>{children}</StyledTree>;
-  };
-
-  Tree.File = File;
-  Tree.Folder = Folder;
   return (
     <>
       <Paper>
         <div style={{ position: 'fixed', zIndex: '1300', inset: '0px' }}>
           <div className="MuiBackdrop-root">
-            <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%', backgroundColor: '' }}>
+            <div className="MuiDialog-container MuiDialog-scrollPaper" style={{ width: '100%', height: '100%' }}>
               <div style={{ height: '560px' }} className="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded setWidth">
                 <DialogTitle>
                   <div className="d-flex f-align-center f-justify-between">
@@ -111,15 +106,29 @@ const DepartmentSearch = ({ setClosePopUp }) => {
                 <DialogContent className="mt-4">
                   <Paper elevation={4} className="p-4">
                     <div className="MainTreeDiv">
-                      <div style={{ display: 'flex', alignItems: 'center', maxHeight: '25px' }} >{icon ? <Add onClick={() => { setIsOpen(!isOpen); setIcons(!icon); }} /> : <Remove onClick={() => { setIsOpen(!isOpen); setIcons(!icon); }} />}</div>
-                      <Tree >
-                        <Tree.Folder name="Department">
-                          <Tree.Folder name="Dep-1" />
-                          <Tree.Folder name='Dep-2' />
-                          <Tree.Folder name='Dep-3' />
-                          <Tree.Folder name='Dep-4' />
-                        </Tree.Folder>
-                      </Tree>
+                      <div className="MainInnerDivpopup">{icon ? <Add onClick={() => { setIsOpen(!isOpen); setIcons(!icon); }} /> : <Remove onClick={() => { setIsOpen(!isOpen); setIcons(!icon); }} />}
+                        <div className="DepartmentList" onClick={() => { setIsOpen(!isOpen); setIcons(!icon); }}>Department List</div>
+                      </div>
+                      {!isOpen ? <div className="OpenDepartmentList">
+                        {Data.map((item) => {
+                          return (
+                            <div className={`DepartDiv ${item.id === id ? 'class' : ''}`} onClick={() => { setId(item.id) }} >
+                              <Checkbox color="primary" onChange={(e) => { checkBoxEvent(item.id, e, item.Dept) }} />
+                              <FolderIcon style={{ color: 'gray' }} /> <div className="TextDepart">{item.Dept}</div>
+                            </div>
+                          )
+                        })}
+                      </div> : ''}
+                    </div>
+                  </Paper>
+                  <Paper elevation={4} className="p-4 paperSecond">
+                    <div className='SelectTextDiv'>
+                      {selectDepartment.length != 0 ? <p> You Selected Departments</p> : <p>please select a department</p>}
+                    </div>
+                    <div className="SelectedDepartments">
+                      {selectDepartment.map((item) => {
+                        return <p>-{item.Dept}-</p>
+                      })}
                     </div>
                   </Paper>
                 </DialogContent>
@@ -132,6 +141,7 @@ const DepartmentSearch = ({ setClosePopUp }) => {
                       variant="contained"
                       className="Btn-Color DepartmentButtonSimilarWidth"
                       disabled={false}
+                      onClick={() => { setClosePopUp(false) }}
                     >
                       {t('Save')}
                     </Button>
